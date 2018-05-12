@@ -11,6 +11,11 @@ const Responses = {
         statusCode: 2,
         message: 'Opps. To be honest we don\'t know what happened. An errr occurred.'
     },
+    UNAUTHORIZED: {
+        statusCode: 2,
+        responseCode: 401,
+        message: 'Unauthorized'
+    },
 }
 
 module.exports = Responses;

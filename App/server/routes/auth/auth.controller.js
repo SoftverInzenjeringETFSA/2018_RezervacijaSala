@@ -5,18 +5,20 @@ const Responses = require('../../utils/responses');
 const AuthController = (() => {
     const POST_Login = (req, res) => {
         const user = req.body.user;
-        if(Session.checkUser(user)) {
-            res.json(Responses.USER_ALREADY_LOGGED_IN);
-            return;
-        }
 
         DBC.checkUser(user).then((response) => {
-            Session.addUser({username: user.username, role:'Admin',token: 'asdad'});
-            res.json({username: user.username, role:'Admin',token: 'asdad'});
+
+            if(!Session.addUser({username: user.username, role:'admin',token: 'token'})) {
+                res.json(Responses.USER_ALREADY_LOGGED_IN);
+                return;
+            }
+        
+            res.json({username: user.username, role:'admin',token: 'token'});
         }, () => {
             res.json(Responses.INVALID_CREDENTIALS);
         });
     };
+    
     return {
         POST_Login: POST_Login,
     }

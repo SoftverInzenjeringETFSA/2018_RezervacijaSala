@@ -57,7 +57,9 @@ const Session = (() => {
      */
     const _findUser = (user) => {
         const found = loggedUsers.find((u) => {
-            return u.username === user.username;
+            return u.username === user.username &&
+                    u.role === user.role &&
+                    u.token === user.token;
         });
         return found;
     }
