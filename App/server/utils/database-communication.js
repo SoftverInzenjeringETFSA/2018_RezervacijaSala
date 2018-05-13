@@ -1,5 +1,5 @@
 const MongoWrapper = require('./database.config');
-
+const ObjectId = require('mongodb').ObjectID;
 const DBC = (() => {
     /**
      * @param {any} user User Object(username, password)
@@ -35,11 +35,29 @@ const DBC = (() => {
         });
     }
 
+    const findSchedule = (id) => {
+        
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection("schedule").findOne({_id: new ObjectId(id)}, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    console.log("Schedule found");
+                    callback();
+                    resolve(res);
+                    });
+            });
+        });
+    }
+
 
     return {
         checkUser: checkUser,
         schedule: {
-            create: createSchedule
+            create: createSchedule,
+            findOne: findSchedule
         }
     }
 })();

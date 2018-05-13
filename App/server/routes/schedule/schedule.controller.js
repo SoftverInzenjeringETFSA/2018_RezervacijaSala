@@ -25,8 +25,9 @@ const ScheduleController = (() => {
     };
 
     const POST_Edit = (req, res) => {
+        const checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
         const user = req.body.user;
-        const schedule = req.body.schedule;
+        // const schedule = req.body.schedule;
         const id = req.body.id;
 
         if(!Session.checkUser(user)) {
@@ -34,8 +35,19 @@ const ScheduleController = (() => {
             return;
         }
 
-        DBC.schedule.create(schedule).then(() => {
-            res.json({response: 'OK'});
+        if(!checkForHexRegExp.test(id)) {
+            res.json(Responses.INVALID_SCHEDULE_ID_FORMAT);
+            return;
+        }
+
+        DBC.schedule.findOne(id).then((foundSchedule) => {
+            if(!foundSchedule) {
+                res.json(Responses.NOT_FOUND);
+                return;
+            }
+            res.json(foundSchedule);
+        },() => {
+            console.log('Errror')
         })
 
     };

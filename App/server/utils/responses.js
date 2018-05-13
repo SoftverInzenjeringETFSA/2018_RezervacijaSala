@@ -1,4 +1,8 @@
 const Responses = {
+    NOT_FOUND: {
+        responseCode: 404,
+        message: 'Not found'
+    },
     USER_ALREADY_LOGGED_IN: {
         statusCode: 0,
         message: 'User is already logged in.'
@@ -26,6 +30,10 @@ const Responses = {
             message: 'Schedule has been created successfully',
             data: data
         }
+    },
+    INVALID_SCHEDULE_ID_FORMAT: {
+        statusCode: 123,
+        message: 'Invalid schedule ID format'
     }
 }
 
