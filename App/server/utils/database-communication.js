@@ -1,3 +1,5 @@
+const MongoWrapper = require('./database.config');
+
 const DBC = (() => {
     /**
      * @param {any} user User Object(username, password)
@@ -6,7 +8,7 @@ const DBC = (() => {
         // Dummy
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                if(user.username === 'Belmin' && user.password === 'Password') {
+                if(user.username === 'belmin' && user.password === 'password') {
                     resolve(true);
                 } else {
                     reject();
