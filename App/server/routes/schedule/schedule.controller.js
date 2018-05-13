@@ -1,6 +1,7 @@
 const DBC = require('../../utils/database-communication');
 const Session = require('../../utils/session');
 const Responses = require('../../utils/responses');
+const ScheduleFormatValidator = require('./schedule.validator');
 
 const ScheduleController = (() => {
     const POST_Create = (req, res) => {
@@ -12,8 +13,13 @@ const ScheduleController = (() => {
             return;
         }
 
+        if(!ScheduleFormatValidator(schedule)) {
+            res.json(Responses.INVALID_SCHEDULE_FORMAT);
+            return;
+        }
+
         DBC.schedule.create(schedule).then(() => {
-            res.json({response: 'OK'});
+            res.json(Responses.SCHEDULE_CREATED({id: 123}));
         })
 
     };

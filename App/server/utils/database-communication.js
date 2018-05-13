@@ -19,13 +19,19 @@ const DBC = (() => {
         
     }
 
-    // ScheduleController
     const createSchedule = (schedule) => {
-        // Dummy
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                resolve(true);
-            }, 100);
+            MongoWrapper((dbo, callback) => {
+                dbo.collection("schedule").insertOne(schedule, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    console.log("Schedule inserted");
+                    callback();
+                    resolve();
+                  });
+            });
         });
     }
 

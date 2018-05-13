@@ -16,6 +16,17 @@ const Responses = {
         responseCode: 401,
         message: 'Unauthorized'
     },
+    INVALID_SCHEDULE_FORMAT: {
+        statusCode: 123,
+        message: 'Invalid schedule format'
+    },
+    SCHEDULE_CREATED: (data) => {
+        return {
+            status: 200,
+            message: 'Schedule has been created successfully',
+            data: data
+        }
+    }
 }
 
 module.exports = Responses;
