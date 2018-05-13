@@ -1,5 +1,14 @@
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://tim9:tim9-si-mongo@ds119070.mlab.com:19070/rezervacija-sale';
+/*
+    Mongo mLab:
+        username: tim9
+        password: si-sala-2018
+        url: https://mlab.com
+        database: rezervacija-sale
+            dbuser: tim9
+            dbpassword: tim9-si-mongo
+*/
+const url = 'mongodb://tim9:tim9-si-mongo@ds119060.mlab.com:19060/rezervacija-sale';
 const dbName = 'rezervacija-sale';
 
 /*
