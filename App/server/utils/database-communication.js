@@ -1,3 +1,5 @@
+const MongoWrapper = require('./database.config');
+
 const DBC = (() => {
     /**
      * @param {any} user User Object(username, password)
