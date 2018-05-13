@@ -27,6 +27,7 @@ const ScheduleController = (() => {
     const POST_Edit = (req, res) => {
         const user = req.body.user;
         const schedule = req.body.schedule;
+        const id = req.body.id;
 
         if(!Session.checkUser(user)) {
             res.json(Responses.UNAUTHORIZED);
