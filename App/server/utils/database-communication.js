@@ -1,5 +1,5 @@
 const MongoWrapper = require('./database.config');
-
+const ObjectId = require('mongodb').ObjectID;
 const DBC = (() => {
     /**
      * @param {any} user User Object(username, password)
@@ -19,15 +19,31 @@ const DBC = (() => {
         
     }
 
-    const createSchedule = (schedule) => {
+    const findSemester = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
-                dbo.collection("schedule").insertOne(schedule, (err, res) => {
+                dbo.collection('semester').findOne({_id: new ObjectId(id)}, (err, res) => {
                     if (err) {
                         console.log(err);
                         reject();
                     };
-                    console.log("Schedule inserted");
+                    console.log('Semester found');
+                    callback();
+                    resolve(res);
+                    });
+            });
+        });
+    }
+
+    const createSchedule = (schedule) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('schedule').insertMany(schedule, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    console.log('Inserted ' + schedule.length + ' records for given schedule');
                     callback();
                     resolve();
                   });
@@ -35,11 +51,32 @@ const DBC = (() => {
         });
     }
 
+    const findSchedule = (id) => {
+        
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('schedule').findOne({_id: new ObjectId(id)}, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    console.log('Schedule found');
+                    callback();
+                    resolve(res);
+                    });
+            });
+        });
+    }
+
 
     return {
         checkUser: checkUser,
+        semester: {
+            findOne: findSemester
+        },
         schedule: {
-            create: createSchedule
+            create: createSchedule,
+            findOne: findSchedule
         }
     }
 })();

@@ -1,4 +1,8 @@
 const Responses = {
+    NOT_FOUND: {
+        responseCode: 404,
+        message: 'Not found'
+    },
     USER_ALREADY_LOGGED_IN: {
         statusCode: 0,
         message: 'User is already logged in.'
@@ -23,9 +27,12 @@ const Responses = {
     SCHEDULE_CREATED: (data) => {
         return {
             status: 200,
-            message: 'Schedule has been created successfully',
-            data: data
+            message: data + ' records have been inserted into schedule collection'
         }
+    },
+    INVALID_ID_FORMAT: {
+        statusCode: 123,
+        message: 'Invalid ID format'
     }
 }
 

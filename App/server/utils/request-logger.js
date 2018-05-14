@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
     const date = new Date();
-    const h = date.getHours();
-    const m = date.getMinutes();
+    let h = date.getHours();
+    let m = date.getMinutes();
     if (h < 10) {
       h = '0' + h;
     }
