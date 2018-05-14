@@ -15,10 +15,11 @@ const _ = require('lodash');
         {string} userId : _id of User Object
         {string} semesterId : _id of Semester Object
         {string} classroomId : _id of Classroom Object
+        {date} date: Optional date of schedule
 */
 const ScheduleFormatValidator = (schedule) => {
 
-    if(_.size(schedule) !== 7) {
+    if((_.has(schedule, 'date') && _.size(schedule) !== 8) || _.size(schedule) !== 7) {
         return false;
     }
 

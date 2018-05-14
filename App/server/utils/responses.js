@@ -27,7 +27,7 @@ const Responses = {
     SCHEDULE_CREATED: (data) => {
         return {
             status: 200,
-            message: data.length + 'records have been inserted into schedule collection'
+            message: data + ' records have been inserted into schedule collection'
         }
     },
     INVALID_ID_FORMAT: {

@@ -31,11 +31,10 @@ const ScheduleController = (() => {
                 res.json(Responses.NOT_FOUND);
                 return;
             }
-            let dateFrom = new Date(foundSemester.beginsAt);
-            let dateTo = new Date(foundSemester.endsAt);
-            let scheduleTime = Helpers.setDateToNextWeekday(dateFrom, schedule.day);
+            let scheduleTime = Helpers.setDateToNextWeekday(foundSemester.beginsAt, schedule.day);
             let allSchedules = []
-            while(scheduleTime.getTime() < dateTo.getTime()) {
+
+            while(scheduleTime.getTime() < foundSemester.endsAt.getTime()) {
                 let entryForWeek = Object.assign({}, schedule);
 
                 entryForWeek.date = new Date(scheduleTime);
