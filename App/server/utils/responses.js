@@ -27,13 +27,12 @@ const Responses = {
     SCHEDULE_CREATED: (data) => {
         return {
             status: 200,
-            message: 'Schedule has been created successfully',
-            data: data
+            message: data.length + 'records have been inserted into schedule collection'
         }
     },
-    INVALID_SCHEDULE_ID_FORMAT: {
+    INVALID_ID_FORMAT: {
         statusCode: 123,
-        message: 'Invalid schedule ID format'
+        message: 'Invalid ID format'
     }
 }
 

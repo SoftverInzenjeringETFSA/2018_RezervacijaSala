@@ -1,21 +1,34 @@
 const _ = require('lodash');
-// name userid semesterid classroomid isrepeating date
+/*
+    Object schedule:
+        {string} name : Name of the schedule
+        {number} day: number between 0 and 6 corresponding to one day of the week
+            0 - Mo
+            1 - Tu
+            2 - We
+            3 - Th
+            4 - Fr
+            5 - Sa
+            6 - Su
+        {number} h : 0-23 hours
+        {number} min : 0-59 minutes
+        {string} userId : _id of User Object
+        {string} semesterId : _id of Semester Object
+        {string} classroomId : _id of Classroom Object
+*/
 const ScheduleFormatValidator = (schedule) => {
 
-    if(_.size(schedule) !== 10) {
+    if(_.size(schedule) !== 7) {
         return false;
     }
 
     if(!_.has(schedule,'name') ||
     !_.has(schedule,'day') ||
-    !_.has(schedule,'month') ||
-    !_.has(schedule,'year') ||
     !_.has(schedule,'h') ||
     !_.has(schedule,'min') ||
     !_.has(schedule,'userId') ||
     !_.has(schedule,'semesterId') ||
-    !_.has(schedule,'classroomId') ||
-    !_.has(schedule,'isRepeating')) {
+    !_.has(schedule,'classroomId')) {
         return false;
     }
 
@@ -24,17 +37,14 @@ const ScheduleFormatValidator = (schedule) => {
     !_.isString(schedule.classroomId) ||
     !_.isString(schedule.semesterId) ||
     !_.isInteger(schedule.day) ||
-    !_.isInteger(schedule.month) ||
-    !_.isInteger(schedule.year) ||
     !_.isInteger(schedule.h) ||
-    !_.isInteger(schedule.min) ||
-    !_.isBoolean(schedule.isRepeating)) {
+    !_.isInteger(schedule.min)) {
         return false;
     }
 
-    const date = getDate(schedule.day, schedule.month, schedule.year, schedule.h, schedule.min);
-
-    if(!date) {
+    if(schedule.day < 0 || schedule.day > 6 ||
+        schedule.h < 0 || schedule.h > 23 || 
+        schedule.min < 0 || schedule.min > 59) {
         return false;
     }
 
