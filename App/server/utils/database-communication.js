@@ -68,6 +68,39 @@ const DBC = (() => {
         });
     }
 
+    // logic for reservations
+    const findReservation = (id) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('reservation').findOne({ _id: new ObjectId(id)}, (error, response) => {
+                    if (error) {
+                        console.log(error)
+                        reject
+                    }
+
+                    console.log('Reservation found')
+                    callback()
+                    resolve(response)
+                })
+            })
+        })
+    }
+
+    const removeReservation = (id) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('reservation').deleteOne({ _id: new ObjectId(id)}, (error, response) => {
+                    if (error) {
+                        console.log(error)
+                        reject
+                    }
+
+                    callback()
+                    resolve('Reservation canceled successfuly')
+                })
+            })
+        })
+    }
 
     return {
         checkUser: checkUser,
@@ -77,6 +110,10 @@ const DBC = (() => {
         schedule: {
             create: createSchedule,
             findOne: findSchedule
+        },
+        reservation: {
+            findOne: findReservation,
+            deleteOne: removeReservation
         }
     }
 })();

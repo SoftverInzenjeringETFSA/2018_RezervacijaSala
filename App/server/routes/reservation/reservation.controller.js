@@ -1,1 +1,3 @@
-// initial file
+const Controller = (() => {
+    // logic goes here
+})()
