@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios'
+import DataFetchingService from './utils/data-fetching.service';
+
+import CreateScheduleEntryComponent from './components/create-schedule-entry/create-schedule-entry.component';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    axios.get('/api/test')
-    .then(response => console.log(response.data))
+    this.dataFetchingService = new DataFetchingService();
+    this.dataFetchingService.login();
   }
   render() {
     return (
@@ -13,9 +15,12 @@ class App extends Component {
         <h1>Rezervacija sale</h1>
         <h2>Tim 9</h2>
         <p>Open DevTools to check server status.</p>
+        <hr/>
+        <CreateScheduleEntryComponent  fetchSemesterList={this.dataFetchingService.fetchSemesterList}/>
       </div>
     );
   }
+
 }
 
 export default App;

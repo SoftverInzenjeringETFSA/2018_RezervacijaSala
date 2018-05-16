@@ -1,4 +1,8 @@
 const Responses = {
+    OK: {
+        responseCode: 200,
+        message: 'OK'
+    },
     NOT_FOUND: {
         responseCode: 404,
         message: 'Not found'

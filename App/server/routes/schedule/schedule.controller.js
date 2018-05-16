@@ -55,7 +55,7 @@ const ScheduleController = (() => {
 
     const POST_Edit = (req, res) => {
         const user = req.body.user;
-        // const schedule = req.body.schedule;
+        const schedule = req.body.schedule;
         const id = req.body.id;
 
         if(!Session.checkUser(user)) {
@@ -68,12 +68,22 @@ const ScheduleController = (() => {
             return;
         }
 
-        DBC.schedule.findOne(id).then((foundSchedule) => {
-            if(!foundSchedule) {
+        if(!ScheduleFormatValidator(schedule)) {
+            res.json(Responses.INVALID_SCHEDULE_FORMAT);
+            return;
+        }
+
+        // SemesterID and UserID can not be mutated.
+        delete schedule.semesterId;
+        delete schedule.userId;
+        DBC.schedule.update(id, schedule).then((response) => {
+            if(response.n === 0) {
                 res.json(Responses.NOT_FOUND);
                 return;
             }
-            res.json(foundSchedule);
+            
+
+            res.json(Response.OK);
         },() => {
             res.json(Responses.UNKNOWN_ERROR);
                 return;
@@ -81,9 +91,25 @@ const ScheduleController = (() => {
 
     };
 
+    const POST_GETFROMTO = (req, res) => {
+        const user = req.body.user;
+        const from = req.body.from;
+        const to = req.body.to;
+
+        if(!Session.checkUser(user)) {
+            res.json(Responses.UNAUTHORIZED);
+            return;
+        }
+
+        DBC.schedule.getFromTo(from, to).then((response) => {
+            res.json(response);
+        });
+    }
+
     return {
         POST_Create: POST_Create,
         POST_Edit: POST_Edit,
+        POST_GETFROMTO: POST_GETFROMTO,
     }
 })();
 
