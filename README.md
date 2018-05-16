@@ -3,9 +3,13 @@
 Welcome file
 Welcome file
 # Getting started
+[You need to have yarn installed. For installation instructions check
+https://yarnpkg.com/en/docs/install. You may need to restart your IDE after installation!]
+
 In ./App run
 
     yarn install-all
+
 Keep in mind, this requires **concurrently** to be installed globally. To install concurrently run
 
     npm i -g concurrently
