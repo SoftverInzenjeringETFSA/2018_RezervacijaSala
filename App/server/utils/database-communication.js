@@ -19,6 +19,23 @@ const DBC = (() => {
         
     }
 
+    const createSemester = (semester) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('semester').insertOne(semester, (error, response) => {
+                    if (error) {
+                        console.log(error)
+                        reject()
+                    }
+
+                    console.log('Semester created')
+                    callback()
+                    resolve(response)
+                })
+            })
+        })
+    }
+
     const findSemester = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
@@ -72,6 +89,7 @@ const DBC = (() => {
     return {
         checkUser: checkUser,
         semester: {
+            create: createSemester,
             findOne: findSemester
         },
         schedule: {
