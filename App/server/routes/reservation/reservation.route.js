@@ -10,23 +10,41 @@ router.use((request, response, next) => {
     next()
 })
 
-// USKLADITI SA SRS-OM!
+// JSON Format - for Postman request
+/*
+    {
+        "userId": "enter valid mongodb user id",
+        "reservationId": "enter valid mongodb reservation id"
+    }
+*/
 router.post('/cancel', (request, response) => {
     console.log('Cancel reservation route')
 
-    // check user rights
+    const userId = request.body.userId
+    const reservationId = request.body.reservationId
+    
+    // Check user rights; only administrator and professor can cancel reservation
+    DBC.user.findOne(userId).then((foundUser) => {
+        // check user role
+        DBC.role.findOne(foundUser.roleId).then((foundRole) => {
+            if(foundRole.name != 'administrator' && foundRole.name != 'nastavnik') {
+                response.json({ 
+                    error: 'Insufficient privileges'
+                })
+                return
+            }
 
-    // rezervacija
-    const reservation = request.body
+            // User is either administrator or professor; has rights to cancel reservation
 
-    DBC.reservation.deleteOne(reservation.id).then((message) => {
-        console.log('Uraaa!')
-
-        response.json({
-            message: message
+            DBC.reservation.deleteOne(reservationId).then((message) => {
+                console.log('Uraaa!')
+        
+                response.json({
+                    message: message
+                })
+            })
         })
     })
-
 })
 
 module.exports = router
