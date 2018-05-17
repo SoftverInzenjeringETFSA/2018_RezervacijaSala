@@ -8,7 +8,7 @@ const saltRounds = 10;
 const UserController = (() => {
     const POST_Create = (req, res) => {
         const data = req.body.user;
-        DBC.users.findOne(data.email).then((foundUser) => {
+        DBC.user.findOne(data.email).then((foundUser) => {
             if(foundUser){
                 res.json(Response.USER_EXISTS);
                 return;
@@ -29,7 +29,7 @@ const UserController = (() => {
                     "Role": role,
 					"Password":hash
 				   };
-                   DBC.users.create(user).then(() => {
+                   DBC.user.create(user).then(() => {
                     res.json(Responses.USER_CREATED(1));
                 })
             
@@ -41,7 +41,7 @@ const UserController = (() => {
     };
     const LOGIN = (req,res) => {
         const data = req.body.user;
-        DBC.users.findOne(data.email).then((foundUser)=>{
+        DBC.user.findOne(data.email).then((foundUser)=>{
             if(!foundUser){
                 res.json(Response.NOT_FOUND)
                 return;
@@ -73,7 +73,7 @@ const UserController = (() => {
     const LOGOUT = (req,res) => {
         const data = req.body.user;
         
-        DBC.users.findOne(data.email).then((foundUser)=>{
+        DBC.user.findOne(data.email).then((foundUser)=>{
             if(!foundUser){
                 res.json(Response.NOT_FOUND)
                 return;

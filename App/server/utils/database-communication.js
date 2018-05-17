@@ -19,6 +19,36 @@ const DBC = (() => {
         
     }
 
+    const createUser = (user) =>{
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('user').insertMany(user, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    console.log('Inserted ' + user.length + ' records for given schedule');
+                    callback();
+                    resolve();
+                  });
+            });
+        });
+    }
+    const findUser = (user) =>{
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('user').findOne({username: user.username}, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    console.log('User found');
+                    callback();
+                    resolve(res);
+                    });
+            });
+        });
+    }
     const findSemester = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
@@ -115,6 +145,10 @@ const DBC = (() => {
             findOne: findSchedule,
             update: updateSchedule,
             getFromTo: getScheduleFromTo
+        },
+        user:{
+            create: createUser,
+            findOne: findUser
         }
     }
 })();
