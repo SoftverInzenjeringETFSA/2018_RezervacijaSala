@@ -4,6 +4,16 @@ const controller = require('./semester.controller.js')
 
 const DBC = require('../../utils/database-communication')
 
+// JSON Format - for Postman request
+/*
+    {
+        "userId": "enter valid mongodb user id",
+        "semester": {
+            "beginsAt": "2017-04-23T18:25:43.511Z",
+            "endsAt": "2018-04-23T18:25:43.511Z"
+        }
+    }
+*/
 router.post('/create', (request, response) => {
     console.log('Create semester route')
 
