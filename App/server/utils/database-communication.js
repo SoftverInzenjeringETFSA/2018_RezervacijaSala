@@ -19,6 +19,36 @@ const DBC = (() => {
         
     }
 
+    const findUser = (id) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('user').findOne({_id: new ObjectId(id)}, (error, response) => {
+                    if (error)
+                        reject()
+                    
+                    console.log('User found')
+                    callback()
+                    resolve(response)
+                })
+            })
+        })
+    }
+
+    const findRole = (id) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('role').findOne({_id: new ObjectId(id)}, (error, response) => {
+                    if (error)
+                        reject()
+                    
+                    console.log('Role found')
+                    callback()
+                    resolve(response)
+                })
+            })
+        })
+    }
+
     const createSemester = (semester) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
@@ -88,6 +118,12 @@ const DBC = (() => {
 
     return {
         checkUser: checkUser,
+        user: {
+            findOne: findUser
+        },
+        role: {
+            findOne: findRole
+        },
         semester: {
             create: createSemester,
             findOne: findSemester
