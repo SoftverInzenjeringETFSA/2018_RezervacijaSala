@@ -2,6 +2,8 @@ const DBC = require('../../utils/database-communication');
 const Session = require('../../utils/session');
 const Responses = require('../../utils/responses');
 const Helpers = require('../../utils/helpers');
+const bcrypt = require('bcryptjs');
+const saltRounds = 10;
 
 const UserController = (() => {
     const POST_Create = (req, res) => {
@@ -18,8 +20,8 @@ const UserController = (() => {
         let name = data.name;
         let email = data.email;
         let role = data.role;
-			bcrypt.genSalt(saltRounds, function(err, salt) {
-				bcrypt.hash(password, salt, function(err, hash) {  
+			bcrypt.genSaltSync(saltRounds, function(err, salt) {
+				bcrypt.hashSync(password, salt, function(err, hash) {  
 				   let user = {
                     "Name": name,
                     "Username":username,
@@ -45,7 +47,7 @@ const UserController = (() => {
                 return;
             } 
             let password = foundUser.Password;
-                bcrypt.compare(req.body.password,password,function(err,isMatch){
+                bcrypt.compareSync(req.body.password,password,function(err,isMatch){
                     if(!isMatch) {          
                         res.render('notFound', {
                             title : "Oops, password is not correct"
@@ -70,7 +72,14 @@ const UserController = (() => {
 
     const LOGOUT = (req,res) => {
         const data = req.body.user;
-        Session.removeUser(data);
+        
+        DBC.users.findOne(data.email).then((foundUser)=>{
+            if(!foundUser){
+                res.json(Response.NOT_FOUND)
+                return;
+            } 
+            Session.removeUser(foundUser);
+            });
     }
 })();
 
