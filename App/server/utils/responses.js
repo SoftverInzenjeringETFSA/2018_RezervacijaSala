@@ -37,6 +37,14 @@ const Responses = {
     INVALID_ID_FORMAT: {
         statusCode: 123,
         message: 'Invalid ID format'
+    },
+    INVALID_PARAMETERS: {
+        statusCode: 123,
+        message: 'Invalid parameters'
+    },
+    CLASSROOM_DELETED: {
+        statusCode: 200,
+        message: 'Successfully deleted classroom and all related objects'
     }
 }
 
