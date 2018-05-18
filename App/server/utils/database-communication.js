@@ -132,6 +132,51 @@ const DBC = (() => {
         })
     }
 
+    const getAllReservations = (classId) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                 dbo.collection("reservation").find({ classRoomId: classId }).toArray(function(err, result) {
+                    if (err) throw err;
+                    console.log(result);
+                    callback()
+                    resolve(result);
+                 }); 
+               
+            })
+        })
+    }
+
+    const createReservation = (reservation) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => { 
+                dbo.collection('reservation').insertMany(reservation, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    console.log('Inserted ' + reservation.length + ' records for given reservation');
+                    callback();
+                    resolve();
+                  });
+            });
+        });
+    }
+
+    const findClassRoom = (id) => {   
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('classroom').findOne({_id: new ObjectId(id)}, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    callback();
+                    resolve(res);
+                    });
+            });
+        });
+    }
+
     return {
         checkUser: checkUser,
         user: {
@@ -149,7 +194,12 @@ const DBC = (() => {
         },
         reservation: {
             findOne: findReservation,
-            deleteOne: removeReservation
+            deleteOne: removeReservation,
+            create: createReservation,
+            getAll: getAllReservations
+        },
+        classroom: {
+            findOne: findClassRoom
         }
     }
 })();

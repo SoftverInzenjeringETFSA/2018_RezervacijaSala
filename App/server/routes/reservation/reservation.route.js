@@ -4,6 +4,10 @@ const controller = require('./reservation.controller')
 
 const DBC = require('../../utils/database-communication')
 
+router.post('/createReservation', controller.POST_CreateReservation);
+router.get('/getall/:id', controller.GET_Reservations);
+
+
 // route middleware that will happen on every request (if needed)
 router.use((request, response, next) => {
     console.log('This gets executed before any other route request')
