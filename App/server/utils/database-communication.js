@@ -22,27 +22,25 @@ const DBC = (() => {
     const createUser = (user) =>{
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
-                dbo.collection('user').insertMany(user, (err, res) => {
+                dbo.collection('user').insert(user, (err, res) => {
                     if (err) {
                         console.log(err);
                         reject();
                     };
-                    console.log('Inserted ' + user.length + ' records for given schedule');
                     callback();
                     resolve();
                   });
             });
         });
     }
-    const findUser = (user) =>{
+    const findUser = (username) =>{
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
-                dbo.collection('user').findOne({username: user.username}, (err, res) => {
+                dbo.collection('user').findOne({username: username}, (err, res) => {
                     if (err) {
                         console.log(err);
                         reject();
-                    };
-                    console.log('User found');
+                    };                   
                     callback();
                     resolve(res);
                     });
