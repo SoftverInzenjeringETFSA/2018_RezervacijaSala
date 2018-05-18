@@ -83,7 +83,7 @@ const ScheduleController = (() => {
             }
             
 
-            res.json(Response.OK);
+            res.json(Responses.OK);
         },() => {
             res.json(Responses.UNKNOWN_ERROR);
                 return;
