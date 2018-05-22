@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="Pretraga sala"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="133dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="Pregled sala"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="33dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="pregled rezervisanih sala"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="227dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="pregled rezervacija"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="317dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="pregled kvarova"
+        tools:layout_editor_absoluteX="112dp"
+        tools:layout_editor_absoluteY="410dp" />
+
+    <Button
+        android:layout_width="259dp"
+        android:layout_height="41dp"
+        android:text="Logout"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="513dp" />
+</android.support.constraint.ConstraintLayout>

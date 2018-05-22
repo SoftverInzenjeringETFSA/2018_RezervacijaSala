@@ -49,6 +49,23 @@ const DBC = (() => {
         })
     }
 
+    const createSemester = (semester) => {
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('semester').insertOne(semester, (error, response) => {
+                    if (error) {
+                        console.log(error)
+                        reject()
+                    }
+
+                    console.log('Semester created')
+                    callback()
+                    resolve(response)
+                })
+            })
+        })
+    }
+
     const findSemester = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
@@ -158,6 +175,24 @@ const DBC = (() => {
                     callback();
                     resolve();
                   });
+                });
+            });
+        }
+        
+    const updateSchedule = (id, schedule) => {
+        
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('schedule').updateOne({_id: new ObjectId(id)},{$set: schedule}, (err, res) => {
+                    if (err) {
+                        console.log(err);
+                        reject();
+                    };
+                    
+                    console.log('Schedule updated');
+                    callback();
+                    resolve(res);
+                    });
             });
         });
     }
@@ -176,6 +211,25 @@ const DBC = (() => {
             });
         });
     }
+    const getScheduleFromTo = (fromDate, toDate) => {
+        
+        return new Promise((resolve, reject) => {
+            MongoWrapper((dbo, callback) => {
+                console.log('testing');
+                dbo.collection('schedule').find({"date":  {
+                    $gte: new Date(fromDate),
+                    $lte: new Date(toDate)}}).toArray((err, res) => {
+                        if (err) {
+                            console.log(err);
+                            reject();
+                        };
+                        callback();
+                        resolve(res);
+                        });
+            });
+        });
+    }
+
 
     return {
         checkUser: checkUser,
@@ -186,11 +240,14 @@ const DBC = (() => {
             findOne: findRole
         },
         semester: {
+            create: createSemester,
             findOne: findSemester
         },
         schedule: {
             create: createSchedule,
-            findOne: findSchedule
+            findOne: findSchedule,
+            update: updateSchedule,
+            getFromTo: getScheduleFromTo
         },
         reservation: {
             findOne: findReservation,

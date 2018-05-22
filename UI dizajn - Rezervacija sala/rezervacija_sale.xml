@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rezervacija sala"
+            android:textSize="24dp"
+            android:textStyle="normal"
+            />
+
+        <EditText
+            android:id="@+id/tekstk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="naziv sale"/>
+        <TextView
+            android:text="datum rezervacije:"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <DatePicker
+            android:layout_width="250dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center">
+
+        </DatePicker>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tt"
+                android:text="vrijeme trajanja:"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:layout_marginEnd="-100dp"
+                android:layout_alignEnd="@id/tt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+
+        <EditText
+            android:id="@+id/tekstk2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="razlog rezervacije"/>
+
+
+        <Button
+            android:layout_gravity="center"
+            android:text="rezervisi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

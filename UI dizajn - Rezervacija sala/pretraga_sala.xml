@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pretraga sala"
+            android:textSize="24dp"
+            android:textStyle="normal"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="tip sale:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </Spinner>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginTop="5dp"
+                android:text="samo slobodne sale:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:layout_alignParentEnd="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="broj mjesta za sjedenje:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </Spinner>
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:text="sala koja posjeduje opremu:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Spinner
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+        </Spinner>
+        <ListView
+            android:id="@+id/lista"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+        <Button
+            android:layout_gravity="center"
+            android:text="rezervisi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="Pretraga sala"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="Pregled sala"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="pregled rezervisanih sala"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="182dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="pregled rezervacija"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="266dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="70dp"
+        android:text="pregled kvarova"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="349dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="52dp"
+        android:text="Generisanje izvjestaja"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="432dp" />
+
+    <Button
+        android:layout_width="198dp"
+        android:layout_height="52dp"
+        android:text="Pregled korisnika"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="494dp" />
+
+    <Button
+        android:layout_width="259dp"
+        android:layout_height="41dp"
+        android:text="Logout"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="556dp" />
+</android.support.constraint.ConstraintLayout>
