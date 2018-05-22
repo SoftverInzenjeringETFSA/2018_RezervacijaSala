@@ -26,6 +26,14 @@ router.post('/cancel', (request, response) => {
 
     const userId = request.body.userId
     const reservationId = request.body.reservationId
+
+    // dummy uslov samo za provjeru radi li poziv sa react nativea
+    if(userId < 10 || reservationId < 10) {
+        response.json({ 
+            error: 'Invalid id'
+        })
+        return
+    }
     
     // Check user rights; only administrator and professor can cancel reservation
     DBC.user.findOne(userId).then((foundUser) => {
