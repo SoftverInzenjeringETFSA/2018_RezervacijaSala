@@ -1,25 +1,25 @@
 {
-    "name": "rezervacija-sale",
-    "version": "0.0.1",
-    "description": "Entry point for running both, NodeJS server and ReactJS app, Rezervacija Sale",
-    "main": "N/A",
-    "scripts": {
-      "server":"cd server && node app",
-      "server-dev":"cd server && nodemon app.js",
-      "start":"concurrently \"yarn server\" \"yarn client\"",
-      "install-all":"concurrently \"cd server && yarn install\" \"cd client && yarn install\"",
-      "client":"cd client && yarn start"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/SoftverInzenjeringETFSA/2018_RezervacijaSala.git"
-    },
-    "keywords": [
-      "si",
-      "tim-9",
-      "rezervacija",
-      "sale"
-    ],
-    "license": "ISC"
-  }
-  
+  "name": "rezervacija-sale",
+  "version": "0.0.1",
+  "description": "Entry point for running both, NodeJS server and ReactJS app, Rezervacija Sale",
+  "main": "N/A",
+  "scripts": {
+    "server": "cd server && node app",
+    "server-dev": "cd server && nodemon app.js",
+    "start": "concurrently \"yarn server\" \"yarn client\"",
+    "install-all": "concurrently \"cd server && yarn install\" \"cd client && yarn install\"",
+    "client": "cd client && yarn start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SoftverInzenjeringETFSA/2018_RezervacijaSala.git"
+  },
+  "keywords": [
+    "si",
+    "tim-9",
+    "rezervacija",
+    "sale"
+  ],
+  "license": "ISC",
+  "dependencies": {}
+}

@@ -34,6 +34,12 @@ const Responses = {
             message: data + ' records have been inserted into schedule collection'
         }
     },
+    RESERVATION_CREATED: (data) => {
+        return {
+            status: 200,
+            message: data + ' records have been inserted into reservation collection'
+        }
+    },
     INVALID_ID_FORMAT: {
         statusCode: 123,
         message: 'Invalid ID format'
@@ -45,6 +51,10 @@ const Responses = {
     CLASSROOM_DELETED: {
         statusCode: 200,
         message: 'Successfully deleted classroom and all related objects'
+    },
+    INVALID_RESERVATION_DATE: {
+        statusCode: 122,
+        message: 'The classroom is reserved for the time entered'
     }
 }
 
