@@ -4,7 +4,7 @@ import axios from 'axios';
 import { IP_V4 } from 'react-native-dotenv'
 
 export default class App extends React.Component {
-  requestToNode = () => {
+  /*requestToNode = () => {
     console.log('requestToNode gets called')
     axios.post(`http://${IP_V4}:5000/api/reservation/cancel`, {
       userId: '1',
@@ -16,15 +16,18 @@ export default class App extends React.Component {
     .catch(function (error) {
       console.log(error);
     });
-  }
+  }*/
   
   render() {
     return (
-      <View style={styles.container}>
+      /*<View style={styles.container}>
       <Button
         onPress={this.requestToNode}
         title="Send request"
       />
+      </View>*/
+      <View>
+        
       </View>
     );
   }
