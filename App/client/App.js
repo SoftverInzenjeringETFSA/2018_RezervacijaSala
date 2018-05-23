@@ -3,8 +3,27 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import axios from 'axios';
 import { IP_V4 } from 'react-native-dotenv'
 
+import { SignedOut, SignedIn, createRootNavigator } from './src/router'
+
+import { isSignedIn } from './src/auth'
+
 export default class App extends React.Component {
-  requestToNode = () => {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      signedIn: false,
+      checkedSignIn: true
+    }
+  }
+
+  componentDidMount() {
+    console.log('component mount...')
+    isSignedIn()
+      .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
+      .catch(err => alert("An error occurred"));
+  }
+  /*requestToNode = () => {
     console.log('requestToNode gets called')
     axios.post(`http://${IP_V4}:5000/api/reservation/cancel`, {
       userId: '1',
@@ -16,18 +35,26 @@ export default class App extends React.Component {
     .catch(function (error) {
       console.log(error);
     });
-  }
+  }*/
   
   render() {
-    return (
+    /*return (
       <View style={styles.container}>
       <Button
         onPress={this.requestToNode}
         title="Send request"
       />
       </View>
-    );
-  }
+    );*/
+      const { checkedSignIn, signedIn } = this.state
+
+      // Don't render anything if we didn't check sign in status
+      if(!checkedSignIn)
+        return null;
+      
+      const Layout = createRootNavigator(signedIn)
+      return <Layout />
+    }
 }
 
 const styles = StyleSheet.create({
