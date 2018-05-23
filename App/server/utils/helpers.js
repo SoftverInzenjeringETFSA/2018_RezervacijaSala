@@ -11,9 +11,14 @@ const Helpers = (() => {
         return date;
     }
 
+    const dateDiffInMS = (date1, date2) => {
+        return (date2.getTime() - date1.getTime());
+    }
+
     return {
         addDaysToDate,
-        setDateToNextWeekday
+        setDateToNextWeekday,
+        dateDiffInMS
     }
 })();
 

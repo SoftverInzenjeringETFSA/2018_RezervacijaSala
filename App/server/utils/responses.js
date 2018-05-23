@@ -44,6 +44,14 @@ const Responses = {
         statusCode: 123,
         message: 'Invalid ID format'
     },
+    INVALID_PARAMETERS: {
+        statusCode: 123,
+        message: 'Invalid parameters'
+    },
+    CLASSROOM_DELETED: {
+        statusCode: 200,
+        message: 'Successfully deleted classroom and all related objects'
+    },
     INVALID_RESERVATION_DATE: {
         statusCode: 122,
         message: 'The classroom is reserved for the time entered'
