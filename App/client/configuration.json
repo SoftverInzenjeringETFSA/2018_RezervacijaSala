@@ -1,0 +1,5 @@
+{
+  "server_protocol": "http",
+  "server_ip": "192.168.1.3",
+  "server_port": 5000
+}

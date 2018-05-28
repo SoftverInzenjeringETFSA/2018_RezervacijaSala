@@ -1,8 +1,9 @@
-// Login screen 
+// Login screen
 import React from 'react'
 import { Text, View } from 'react-native'
 import { Card, Button, FormLabel, FormInput } from 'react-native-elements'
 import { onSignIn } from '../auth.js'
+import User from '../models/User.js';
 
 export default ({ navigation }) => {
     return (
@@ -17,6 +18,7 @@ export default ({ navigation }) => {
                     backgroundColor="#03A9F4"
                     title="Sign in"
                     onPress={() => {
+                        User.login("belmind", "password");
                         onSignIn().then(() => navigation.navigate("SignedIn"));
                     }}
                 />

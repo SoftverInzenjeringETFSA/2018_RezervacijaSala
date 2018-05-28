@@ -29,6 +29,14 @@ export const SignedIn = createBottomTabNavigator({
             tabBarLabel: "Profile"
         }
     }
+},{
+    tabBarOptions: {
+      labelStyle: {
+        fontSize: 18,
+        paddingBottom: 12
+      },
+      showIcon: false
+    }
 })
 
 export const createRootNavigator = (signedIn = false) => {
