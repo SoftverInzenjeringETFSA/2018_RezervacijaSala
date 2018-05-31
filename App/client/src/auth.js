@@ -3,7 +3,7 @@ import { AsyncStorage } from 'react-native'
 export const USER_KEY = 'auth-key'
 
 // Set some AUTH key when user signs in
-export const onSignIn = () => AsyncStorage.setItem(USER_KEY, "true");
+export const onSignIn = (token) => AsyncStorage.setItem(USER_KEY, token);
 // Remove AUTH key when user signs out
 export const onSignOut = () => AsyncStorage.removeItem(USER_KEY);
 

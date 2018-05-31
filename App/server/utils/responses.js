@@ -3,6 +3,13 @@ const Responses = {
         responseCode: 200,
         message: 'OK'
     },
+    OK_WITH_TOKEN: (token) => {
+      return {
+        responseCode: 200,
+        message: 'OK',
+        token: token
+      }
+    },
     NOT_FOUND: {
         responseCode: 404,
         message: 'Not found'
@@ -10,6 +17,10 @@ const Responses = {
     USER_ALREADY_LOGGED_IN: {
         statusCode: 0,
         message: 'User is already logged in.'
+    },
+    USER_ALREADY_CREATED: {
+        responseCode: 409,
+        message: 'User already exists.'
     },
     INVALID_CREDENTIALS: {
         statusCode: 1,
@@ -55,6 +66,11 @@ const Responses = {
     INVALID_RESERVATION_DATE: {
         statusCode: 122,
         message: 'The classroom is reserved for the time entered'
+    },
+    SERVER_ERROR: {
+      responseCode: 500,
+      message: "An unexpected error happened on our end."
+
     }
 }
 

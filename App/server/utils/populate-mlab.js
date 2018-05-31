@@ -1,6 +1,6 @@
 /*
-    U slučaju da budemo mijenjali bazu, 
-    podatke koji su nam potreni za inicijalno pokretanje aplikacije 
+    U slučaju da budemo mijenjali bazu,
+    podatke koji su nam potreni za inicijalno pokretanje aplikacije
     dodajte ovdje da pokretanjem ovog fajla možemo jednostavno sve da restoreamo.
 
 */
@@ -29,4 +29,26 @@ MongoWrapper((dbo, cb) => {
             cb();
         });
       });
-})
+});
+
+
+var roles = [
+  "Administrator",
+  "Korisnik"
+];
+
+MongoWrapper((dbo, cb) => {
+  dbo.createCollection('role', (err, res) => {
+    if(err) throw err;
+    console.log('Collection "role" created!');
+    for(var i = 0; i < roles.length; i++){
+      dbo.collection('role').insertOne({
+        name: roles[i]
+      }, (err, res) => {
+        if(err) throw err;
+        console.log("Create role ", roles[i], ".");
+        cb();
+      });
+    }
+  });
+});

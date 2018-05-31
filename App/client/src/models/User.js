@@ -1,15 +1,29 @@
 import apiHelper from '../utils/apiHelper.js';
-export default class User {
+import { onSignIn } from '../auth.js'
 
-  static login(email, password){
-    apiHelper('/auth/login', "POST", {
+export default class User {
+  constructor(user){
+    this.username = user.username;
+    this.password = user.password;
+    this.token = user.token;
+  }
+
+  static login(email, password) {
+    return apiHelper('/auth/login', "POST", {
       user:{
-        username: "belmin",
-        password: "password"
+        username: email,
+        password: password
+      }
+    }).then(response => response.json())
+  }
+
+  static registration(email, password){
+    return apiHelper('/auth/registration', "POST", {
+      user:{
+        username: email,
+        password: password
       }
     })
     .then(response => response.json())
-    .then(responseJson => console.log("Response: ", responseJson))
-    .catch(error => console.log("Error: ", error))
   }
 }

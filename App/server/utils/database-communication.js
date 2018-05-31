@@ -3,29 +3,39 @@ const ObjectId = require('mongodb').ObjectID;
 const DBC = (() => {
     /**
      * @param {any} user User Object(username, password)
-     * @returns 
+     * @returns
      */
     const checkUser = (user) => {
-        // Dummy
         return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                if(user.username === 'belmin' && user.password === 'password') {
-                    resolve(true);
-                } else {
-                    reject();
-                }
-            }, 100);
+          MongoWrapper((dbo, callback) => {
+            dbo.collection('user').findOne({
+              username: user.username,
+              password: user.password
+            }, (error, response) => {
+              if(error){
+                reject()
+                return
+              }
+              callback();
+              if(response == null){
+                resolve(false)
+              } else {
+                resolve(true)
+              }
+            })
+          })
         });
-        
     }
 
     const findUser = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
                 dbo.collection('user').findOne({_id: new ObjectId(id)}, (error, response) => {
-                    if (error)
-                        reject()
-                    
+                    if (error){
+                      reject()
+                      return;
+                    }
+
                     console.log('User found')
                     callback()
                     resolve(response)
@@ -34,13 +44,58 @@ const DBC = (() => {
         })
     }
 
+    const createUser = (user) => {
+        return new Promise((resolve, reject) => {
+          MongoWrapper((dbo, callback) => {
+            dbo.collection('user').findOne({ username: user.username }, (error, response) => {
+              if (error){
+                 reject(error)
+                 return;
+              }
+              if(response == null){
+                /*
+                 TODO: Add unique constraint on username field, clear database
+                 TODO: make role an id field
+                */
+                dbo.collection('user').insertOne({
+                  username: user.username,
+                  password: user.password,
+                  role: 'Korisnik'
+                }, (error, response) => {
+                  if(error){
+                    reject(error)
+                    return;
+                  }
+                  callback()
+                  resolve(true)
+                })
+              } else {
+                  resolve(false)
+              }
+            })
+          })
+
+
+          // MongoWrapper((dbo, callback) => {
+          //   dbo.collection('user').insertOne({user}, (error, response) => {
+          //     if(error)
+          //       reject();
+          //
+          //       console.log("User created");
+          //       callback();
+          //       resolve(response);
+          //   });
+          // })
+        });
+    };
+
     const findRole = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
                 dbo.collection('role').findOne({_id: new ObjectId(id)}, (error, response) => {
                     if (error)
                         reject()
-                    
+
                     console.log('Role found')
                     callback()
                     resolve(response)
@@ -60,7 +115,7 @@ const DBC = (() => {
 
                     console.log('Semester created')
                     callback()
-                    resolve(response)
+                    resolve(response);
                 })
             })
         })
@@ -69,47 +124,47 @@ const DBC = (() => {
     const findSemester = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
-                dbo.collection('semester').findOne({_id: new ObjectId(id)}, (err, res) => {
-                    if (err) {
-                        console.log(err);
-                        reject();
+                dbo.collection('semester').findOne({_id: new ObjectId(id)}, (error, response) => {
+                    if (error) {
+                        console.log(error);
+                        reject()
                     };
-                    console.log('Semester found');
-                    callback();
-                    resolve(res);
-                    });
-            });
-        });
+                    console.log('Semester found')
+                    callback()
+                    resolve(response)
+                })
+            })
+        })
     }
 
     const createSchedule = (schedule) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
-                dbo.collection('schedule').insertMany(schedule, (err, res) => {
-                    if (err) {
-                        console.log(err);
+                dbo.collection('schedule').insertMany(schedule, (error, response) => {
+                    if (error) {
+                        console.log(error);
                         reject();
                     };
                     console.log('Inserted ' + schedule.length + ' records for given schedule');
                     callback();
-                    resolve();
+                    resolve(response);
                   });
             });
         });
     }
 
     const findSchedule = (id) => {
-        
+
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
-                dbo.collection('schedule').findOne({_id: new ObjectId(id)}, (err, res) => {
-                    if (err) {
-                        console.log(err);
+                dbo.collection('schedule').findOne({_id: new ObjectId(id)}, (error, response) => {
+                    if (error) {
+                        console.log(error);
                         reject();
                     };
                     console.log('Schedule found');
                     callback();
-                    resolve(res);
+                    resolve(response);
                     });
             });
         });
@@ -157,30 +212,30 @@ const DBC = (() => {
                     console.log(result);
                     callback()
                     resolve(result);
-                 }); 
-               
+                 });
+
             })
         })
     }
 
     const createReservation = (reservation) => {
         return new Promise((resolve, reject) => {
-            MongoWrapper((dbo, callback) => { 
-                dbo.collection('reservation').insertMany(reservation, (err, res) => {
-                    if (err) {
-                        console.log(err);
+            MongoWrapper((dbo, callback) => {
+                dbo.collection('reservation').insertMany(reservation, (error, response) => {
+                    if (error) {
+                        console.log(error);
                         reject();
                     };
                     console.log('Inserted ' + reservation.length + ' records for given reservation');
                     callback();
-                    resolve();
+                    resolve(response);
                   });
                 });
             });
         }
-        
+
     const updateSchedule = (id, schedule) => {
-        
+
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
                 dbo.collection('schedule').updateOne({_id: new ObjectId(id)},{$set: schedule}, (err, res) => {
@@ -188,7 +243,7 @@ const DBC = (() => {
                         console.log(err);
                         reject();
                     };
-                    
+
                     console.log('Schedule updated');
                     callback();
                     resolve(res);
@@ -197,7 +252,7 @@ const DBC = (() => {
         });
     }
 
-    const findClassRoom = (id) => {   
+    const findClassRoom = (id) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
                 dbo.collection('classroom').findOne({_id: new ObjectId(id)}, (err, res) => {
@@ -212,7 +267,7 @@ const DBC = (() => {
         });
     }
     const getScheduleFromTo = (fromDate, toDate) => {
-        
+
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
                 console.log('testing');
@@ -269,7 +324,7 @@ const DBC = (() => {
                             callback();
                             resolve()
                         }
-                    }                        
+                    }
                 });
             });
         });
@@ -290,11 +345,11 @@ const DBC = (() => {
             });
         });
     }
-    
+
 
     //Search
     /* Tried all these, mongo saves those dates as strings apparently
-    
+
         reservedAt : new Date("2017-12-22T08:15:00Z").getTime()
         reservedAt: new Date("2017-12-22T08:15:00Z")
         reservedAt: { $gt: new Date("2017-12-22T08:15:00Z"), $lt: new Date("2017-12-22T08:15:00Z")}
@@ -302,7 +357,7 @@ const DBC = (() => {
         reservedAt: { $gte: new Date()}
         reservedAt: { $lte: new Date("2017-12-22T08:15:00Z").getTime() }
         reservedAt: { $lte: Date.now() }
-        reservedAt: { $lte: new Date() }              
+        reservedAt: { $lte: new Date() }
     */
 
     const findClassroomsReservedAt = (date) => {
@@ -323,7 +378,7 @@ const DBC = (() => {
         });
     }
 
-    //TODO: Add filter by equipment and time available 
+    //TODO: Add filter by equipment and time available
     const findAllByCriteria = (name, seatCount, equipment, time) => {
     var _nameRegex = (name == null) ? new RegExp(/.*?/) : new RegExp("^.*" +name+".*", 'i');
     var _seatCount = (seatCount == null) ? 0 : seatCount;
@@ -354,6 +409,7 @@ const DBC = (() => {
     return {
         checkUser: checkUser,
         user: {
+            create: createUser,
             findOne: findUser
         },
         role: {
