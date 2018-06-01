@@ -26,6 +26,9 @@
     "helmet": "^3.12.1",
     "jsonwebtoken": "^8.2.2",
     "lodash": "^4.17.10",
-    "mongodb": "^3.1.0-beta4"
+    "mongodb": "^3.1.0-beta4",
+    "native-base": "^2.4.5",
+    "react-native": "^0.55.4",
+    "react-native-material-textfield": "^0.12.0"
   }
 }
