@@ -346,6 +346,22 @@ const DBC = (() => {
         });
     }
 
+    const createClassroom = (classroom) => {
+      return new Promise((resolve, reject) => {
+          MongoWrapper((dbo, callback) => {
+              dbo.collection('classroom').insertOne(classroom, (error, response) => {
+                  if (error) {
+                      console.log(error);
+                      reject();
+                  };
+                  console.log('Inserted ' + classroom.naziv + ' classroom');
+                  callback();
+                  resolve(response);
+                });
+              });
+          });
+
+    }
 
     //Search
     /* Tried all these, mongo saves those dates as strings apparently
@@ -429,7 +445,8 @@ const DBC = (() => {
             findOne: findClassRoom,
             deleteOne: deleteClassroom,
             deleteRelatedObjects: deleteRelatedObjects,
-            findAllByCriteria: findAllByCriteria
+            findAllByCriteria: findAllByCriteria,
+            create: createClassroom
         },
         reservation: {
             findOne: findReservation,
