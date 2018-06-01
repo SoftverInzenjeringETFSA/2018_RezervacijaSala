@@ -21,5 +21,8 @@
     "sale"
   ],
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "lodash-es": "^4.17.10",
+    "react-redux": "^5.0.7"
+  }
 }

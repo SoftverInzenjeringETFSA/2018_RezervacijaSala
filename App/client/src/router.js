@@ -3,6 +3,7 @@ import Login from './components/Login'
 import Registration from './components/Registration'
 import Menu from './components/Menu'
 import Profile from './components/Profile'
+import kreirajSalu from './components/kreirajSalu/kreirajSalu.js'
 
 export const SignedOut = createStackNavigator({
     Registration: {
@@ -20,6 +21,12 @@ export const SignedOut = createStackNavigator({
 })
 
 export const SignedIn = createBottomTabNavigator({
+  kreirajSalu:{
+    screen: kreirajSalu,
+    navigationOptions:{
+      tabBarLabel: "Create"
+    }
+  },
     Menu: {
         screen: Menu
     },
