@@ -12,7 +12,7 @@ const ClassroomController = (() => {
         const classroom = req.body.classroom;
         console.log(classroom);
         console.log(req.body);
-        
+
         if(!checkForHexRegExp.test(classroom.id)) {
             res.json(Responses.INVALID_ID_FORMAT);
             return;
@@ -52,7 +52,7 @@ const ClassroomController = (() => {
 
         if(date != null && Helpers.dateDiffInMS(new Date(), new Date(date))<=0) {
             res.json(Responses.INVALID_PARAMETERS);
-            return;      
+            return;
         }
 
        /* if(!Session.checkUser(user)) {
@@ -65,10 +65,14 @@ const ClassroomController = (() => {
             res.json(response);
         });
     }
-
+    const POST_Create = (req, res) => {
+      console.log(req.classroom);
+      DBC.classroom.createClassroom(req.classroom);
+    }
     return {
         POST_Delete: POST_Delete,
-        POST_Search: POST_Search
+        POST_Search: POST_Search,
+        POST_Create: POST_Create
     }
 })();
 
