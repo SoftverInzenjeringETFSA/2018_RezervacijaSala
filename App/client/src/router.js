@@ -4,12 +4,13 @@ import Registration from './components/Registration'
 import Menu from './components/Menu'
 import Profile from './components/Profile'
 import kreirajSalu from './components/kreirajSalu/kreirajSalu.js'
+import pregledSala from './components/PregledSvihSala/PregledSvihSala.js'
 
 export const SignedOut = createStackNavigator({
     Registration: {
-        screen: Registration,
+        screen: pregledSala,             //screen: Registration,
         navigationOptions: {
-            title: "Registration"
+            title: "Rezervacija sala"
         }
     },
     Login: {
