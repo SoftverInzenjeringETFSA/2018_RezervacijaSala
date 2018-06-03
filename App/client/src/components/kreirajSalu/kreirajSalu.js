@@ -19,16 +19,23 @@ constructor(props) {
   };
 }
 
-kreirajSaluFunc(){
+kreirajSaluFunc(event){
+  let naziv = this.state.naziv;
+  let tip = this.state.tip;
+  let broj_mjesta = this.state.broj_mjesta;
+  let oprema = this.state.oprema;
+  let broj_kljuceva = this.state.broj_kljuceva;
+
+  classroom = {
+    name: naziv,
+    type: tip,
+    number_of_seats : broj_mjesta,
+    equipment : oprema,
+    number_of_keys : broj_kljuceva
+  };
 
   return apiHelper('/api/classroom/create', "POST", {
-    classroom:{
-      name: this.naziv,
-      type: this.tip,
-      number_of_seats : this.broj_mjesta,
-      equipment : this.oprema,
-      number_of_keys : this.broj_kljuceva
-    }
+    classroom
   }).then(response => response.json())
 }
 
@@ -68,7 +75,7 @@ render() {
          />
           </View>
           <View style={{flex: 1}}>
-          <Button full info onPress = { this.kreirajSaluFunc }>
+          <Button full info onPress = { this.kreirajSaluFunc.bind(this) }>
             <Text style={{color : 'white', fontWeight: 'bold', fontSize: 20}}>Kreiraj</Text>
           </Button>
           </ View>
