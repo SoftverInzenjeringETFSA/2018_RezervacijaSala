@@ -43,10 +43,7 @@ render() {
   let { naziv, tip, broj_mjesta, oprema, broj_kljuceva } = this.state;
 
   return (
-
-
     <View  style={{flex: 12}}>
-      <H1 style={styles.kreirajSaluHeader}>Classroom creation </H1>
     <View style={{ marginLeft:5, flex: 11}}>
     <TextField
        label='Naziv'
@@ -78,8 +75,8 @@ render() {
           <Button full info onPress = { this.kreirajSaluFunc.bind(this) }>
             <Text style={{color : 'white', fontWeight: 'bold', fontSize: 20}}>Kreiraj</Text>
           </Button>
-          </ View>
-    </ View>
+          </View>
+    </View>
   );
 }
 }

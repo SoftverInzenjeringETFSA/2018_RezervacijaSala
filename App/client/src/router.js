@@ -8,9 +8,9 @@ import pregledSala from './components/PregledSvihSala/PregledSvihSala.js'
 
 export const SignedOut = createStackNavigator({
     Registration: {
-        screen: pregledSala,             //screen: Registration,
+        screen: Registration,
         navigationOptions: {
-            title: "Rezervacija sala"
+            title: "Registration"
         }
     },
     Login: {
@@ -20,32 +20,28 @@ export const SignedOut = createStackNavigator({
         }
     }
 })
-
-export const SignedIn = createBottomTabNavigator({
-  kreirajSalu:{
-    screen: kreirajSalu,
-    navigationOptions:{
-      tabBarLabel: "Create"
-    }
-  },
+export const SignedIn = createStackNavigator({
     Menu: {
-        screen: Menu
+      screen: Menu,
+      navigationOptions:{
+        title: "Main menu"
+      }
     },
-    Profile: {
-        screen: Profile,
-        navigationOptions: {
-            tabBarLabel: "Profile"
-        }
+    ClassroomCreation:{
+      screen: kreirajSalu,
+      navigationOptions:{
+        title: "Create classroom"
+      }
+    },
+    ClassroomOverview:{
+      screen: pregledSala,
+      navigationOptions:{
+        title: "Classrom overview"
+      }
     }
-},{
-    tabBarOptions: {
-      labelStyle: {
-        fontSize: 18,
-        paddingBottom: 12
-      },
-      showIcon: false
-    }
-})
+  }
+);
+
 
 export const createRootNavigator = (signedIn = false) => {
     return createSwitchNavigator(
