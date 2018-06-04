@@ -1,5 +1,5 @@
 const Session = (() => {
-    
+
     const loggedUsers = [];
 
     /**
@@ -15,8 +15,8 @@ const Session = (() => {
      * @returns True if user is added to session or False if user is already logged in
      */
     const addUser = (user) => {
-        
-        if (!checkUser(user)) {
+
+        if (checkUser(user)) {
             loggedUsers.push(user);
             return true;
         } else {
@@ -35,6 +35,7 @@ const Session = (() => {
             });
             return true;
         } else {
+
             return false;
         }
     };
@@ -45,7 +46,6 @@ const Session = (() => {
      * @returns True if the users have the same username, role and token. Otherwise returns false.
      */
     const _compareUsers = (user1, user2) => {
-
         return user1.username === user2.username &&
                 user1.role === user2.role &&
                 user1.token === user2.token;

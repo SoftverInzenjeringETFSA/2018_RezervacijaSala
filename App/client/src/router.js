@@ -11,7 +11,7 @@ export const SignedOut = createStackNavigator({
     Dodati pregledSala da se pokrene nakon logovanja, u slucaju da je samo korisnik, a u slucaju da je admin ima drugi prikaz
   */
     Registration: {
-        screen: pregledSala,             //screen: Registration,
+        screen: pregledSala,
         navigationOptions: {
             title: "Rezervacija sala",
             headerTintColor: 'lightgrey',
@@ -20,6 +20,13 @@ export const SignedOut = createStackNavigator({
             }
         }
     },
+    /*
+    Registration: {
+      screen: Registration,
+      navigationOptions: {
+          title: "Registration"
+      },
+    */
     Login: {
         screen: Login,
         navigationOptions: {
@@ -27,32 +34,28 @@ export const SignedOut = createStackNavigator({
         }
     }
 })
-
-export const SignedIn = createBottomTabNavigator({
-  kreirajSalu:{
-    screen: kreirajSalu,
-    navigationOptions:{
-      tabBarLabel: "Create"
-    }
-  },
+export const SignedIn = createStackNavigator({
     Menu: {
-        screen: Menu
+      screen: Menu,
+      navigationOptions:{
+        title: "Main menu"
+      }
     },
-    Profile: {
-        screen: Profile,
-        navigationOptions: {
-            tabBarLabel: "Profile"
-        }
+    ClassroomCreation:{
+      screen: kreirajSalu,
+      navigationOptions:{
+        title: "Create classroom"
+      }
+    },
+    ClassroomOverview:{
+      screen: pregledSala,
+      navigationOptions:{
+        title: "Classrom overview"
+      }
     }
-},{
-    tabBarOptions: {
-      labelStyle: {
-        fontSize: 18,
-        paddingBottom: 12
-      },
-      showIcon: false
-    }
-})
+  }
+);
+
 
 export const createRootNavigator = (signedIn = false) => {
     return createSwitchNavigator(

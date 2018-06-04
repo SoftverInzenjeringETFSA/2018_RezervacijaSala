@@ -17,29 +17,43 @@ constructor(props) {
    oprema: '',
    broj_kljuceva: ''
   };
+  this.onChange = this.onChange.bind(this);
 }
 
-kreirajSaluFunc(){
+kreirajSaluFunc(event){
+  let naziv = this.state.naziv;
+  let tip = this.state.tip;
+  let broj_mjesta = this.state.broj_mjesta;
+  let oprema = this.state.oprema;
+  let broj_kljuceva = this.state.broj_kljuceva;
 
-  return apiHelper('/api/classroom/create', "POST", {
-    classroom:{
-      name: this.naziv,
-      type: this.tip,
-      number_of_seats : this.broj_mjesta,
-      equipment : this.oprema,
-      number_of_keys : this.broj_kljuceva
-    }
+  let classroom = {
+    name: naziv,
+    type: tip,
+    number_of_seats : broj_mjesta,
+    equipment : oprema,
+    number_of_keys : broj_kljuceva
+  };
+  console.log(classroom);
+  return apiHelper('/classroom/create', "POST", {
+    classroom
   }).then(response => response.json())
+  .then(responseJson => {
+    console.log(responseJson);
+    console.log("Uspjesno kreirano.");
+
+  }).catch((error) => {
+    console.log("Greska");
+  })
 }
+
+onChange = (name, value) => this.setState({ [name]: value });
 
 render() {
   let { naziv, tip, broj_mjesta, oprema, broj_kljuceva } = this.state;
 
   return (
-
-
     <View  style={{flex: 12}}>
-      <H1 style={styles.kreirajSaluHeader}>Classroom creation </H1>
     <View style={{ marginLeft:5, flex: 11}}>
     <TextField
        label='Naziv'
@@ -68,11 +82,11 @@ render() {
          />
           </View>
           <View style={{flex: 1}}>
-          <Button full info onPress = { this.kreirajSaluFunc }>
+          <Button full info onPress = { this.kreirajSaluFunc.bind(this) }>
             <Text style={{color : 'white', fontWeight: 'bold', fontSize: 20}}>Kreiraj</Text>
           </Button>
-          </ View>
-    </ View>
+          </View>
+    </View>
   );
 }
 }

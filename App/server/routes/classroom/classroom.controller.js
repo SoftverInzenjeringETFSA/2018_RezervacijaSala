@@ -66,12 +66,24 @@ const ClassroomController = (() => {
         });
     }
     const POST_Create = (req, res) => {
-      DBC.classroom.createClassroom(req.classroom);
+      console.log(req.body.classroom);
+      DBC.classroom.create(req.body.classroom);
+      res.json({test:"Test"})
+    }
+
+    const GET_GetClassroom = (req, res) => {
+      DBC.classroom.findClassRoom(req.body.id).then((response) => {
+        if(response == null)
+          res.json(Responses.NOT_FOUND);
+        else
+          res.json(response);
+      });
     }
     return {
         POST_Delete: POST_Delete,
         POST_Search: POST_Search,
-        POST_Create: POST_Create
+        POST_Create: POST_Create,
+        GET_GetClassroom: GET_GetClassroom
     }
 })();
 
