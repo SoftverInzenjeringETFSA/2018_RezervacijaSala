@@ -17,6 +17,7 @@ constructor(props) {
    oprema: '',
    broj_kljuceva: ''
   };
+  this.onChange = this.onChange.bind(this);
 }
 
 kreirajSaluFunc(event){
@@ -26,18 +27,27 @@ kreirajSaluFunc(event){
   let oprema = this.state.oprema;
   let broj_kljuceva = this.state.broj_kljuceva;
 
-  classroom = {
+  let classroom = {
     name: naziv,
     type: tip,
     number_of_seats : broj_mjesta,
     equipment : oprema,
     number_of_keys : broj_kljuceva
   };
-
-  return apiHelper('/api/classroom/create', "POST", {
+  console.log(classroom);
+  return apiHelper('/classroom/create', "POST", {
     classroom
   }).then(response => response.json())
+  .then(responseJson => {
+    console.log(responseJson);
+    console.log("Uspjesno kreirano.");
+
+  }).catch((error) => {
+    console.log("Greska");
+  })
 }
+
+onChange = (name, value) => this.setState({ [name]: value });
 
 render() {
   let { naziv, tip, broj_mjesta, oprema, broj_kljuceva } = this.state;
