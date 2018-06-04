@@ -11,12 +11,18 @@ export default styles = StyleSheet.create({
   header:{
     color: 'gray',
     fontSize: 30,
-    marginLeft: 15
+    marginLeft: 12
   },
   paragraph: {
         margin: 15,
         fontSize: 19,
         fontWeight: 'bold',
         textAlign: 'center',
-    }
+    },
+    MainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  }
 });

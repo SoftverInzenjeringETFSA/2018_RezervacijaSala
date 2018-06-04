@@ -7,10 +7,17 @@ import kreirajSalu from './components/kreirajSalu/kreirajSalu.js'
 import pregledSala from './components/PregledSvihSala/PregledSvihSala.js'
 
 export const SignedOut = createStackNavigator({
+  /*
+    Dodati pregledSala da se pokrene nakon logovanja, u slucaju da je samo korisnik, a u slucaju da je admin ima drugi prikaz
+  */
     Registration: {
         screen: pregledSala,             //screen: Registration,
         navigationOptions: {
-            title: "Rezervacija sala"
+            title: "Rezervacija sala",
+            headerTintColor: 'lightgrey',
+            headerStyle:{
+              backgroundColor: '#043F86'
+            }
         }
     },
     Login: {
