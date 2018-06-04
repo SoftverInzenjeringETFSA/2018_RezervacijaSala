@@ -19,10 +19,12 @@ export default class SalaDetalji extends Component{
       pristupLaboratoriji: '',
       status: ''
     }
+    this.getClassroom = this.getClassroom.bind(this);
   }
-
+  componentDidMount(){
+    this.getClassroom();
   deleteClassroom(){
-    return apiHelper('api/classroom/delete' + '?id=${encodeURIComponent(' + {id} + ')}', 'GET', {})
+    return apiHelper('/classroom/delete' + '?id='+ id, 'GET', {})
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
@@ -33,7 +35,8 @@ export default class SalaDetalji extends Component{
   }
 
   getClassroom(){
-    return apiHelper('api/classroom/getClassroom' + '?id=${encodeURIComponent(' + {id} + ')}', 'GET', {})
+    var id = "5b1564a621e05807e45e5923";
+    return apiHelper('/classroom/getClassroom' + '?id='+ id , 'GET', {})
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({

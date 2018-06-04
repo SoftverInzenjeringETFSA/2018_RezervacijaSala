@@ -442,7 +442,7 @@ const DBC = (() => {
             getFromTo: getScheduleFromTo
         },
         classroom: {
-            findOne: findClassRoom,
+            findOneClassRoom: findClassRoom,
             deleteOne: deleteClassroom,
             deleteRelatedObjects: deleteRelatedObjects,
             findAllByCriteria: findAllByCriteria,

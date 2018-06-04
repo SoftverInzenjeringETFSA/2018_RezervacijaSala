@@ -5,6 +5,7 @@ import Menu from './components/Menu'
 import Profile from './components/Profile'
 import kreirajSalu from './components/kreirajSalu/kreirajSalu.js'
 import pregledSala from './components/PregledSvihSala/PregledSvihSala.js'
+import SalaDetalji from './components/SalaDetalji/SalaDetalji.js'
 
 export const SignedOut = createStackNavigator({
     Registration: {
@@ -37,6 +38,12 @@ export const SignedIn = createStackNavigator({
       screen: pregledSala,
       navigationOptions:{
         title: "Classrom overview"
+      }
+    },
+    ClassroomDetails: {
+      screen: SalaDetalji,
+      navigationOptions:{
+        title: "Classrom details"
       }
     }
   }
