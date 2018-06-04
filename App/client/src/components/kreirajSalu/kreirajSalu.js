@@ -5,6 +5,7 @@ import { H1, Button, Footer, FooterTab } from 'native-base';
 
 import styles from './style.js';
 import apiHelper from '../../utils/apiHelper.js';
+import Validation from '../../validation.js';
 
 export default class kreirajSalu extends Component {
 
@@ -15,12 +16,20 @@ constructor(props) {
    tip: '',
    broj_mjesta: '',
    oprema: '',
-   broj_kljuceva: ''
+   broj_kljuceva: '',
+   naziv_error: '',
+   tip_error: '',
+   broj_mjesta_error: '',
+   oprema_error: '',
+   broj_kljuceva_error: ''
   };
   this.onChange = this.onChange.bind(this);
 }
 
 kreirajSaluFunc(event){
+
+  var validForm = true;
+
   let naziv = this.state.naziv;
   let tip = this.state.tip;
   let broj_mjesta = this.state.broj_mjesta;
@@ -32,8 +41,38 @@ kreirajSaluFunc(event){
     type: tip,
     number_of_seats : broj_mjesta,
     equipment : oprema,
-    number_of_keys : broj_kljuceva
+    number_of_keys : broj_kljuceva,
   };
+
+  /* Name Validation */
+  if(Validation.validateClassroomName(classroom.name) === false){
+      this.setState({naziv_error: "Please enter a valid name." });
+      validForm = false;
+  }
+  /* Type Validation */
+  if(Validation.validateClassroomType(classroom.type) === false){
+      this.setState({tip_error: "Please enter a valid type." });
+      validForm = false;
+  }
+  /* Number of seats Validation */
+  if(Validation.validateClassroomNumberOfSeats(classroom.number_of_seats) === false){
+      this.setState({broj_mjesta_error: "Number of seats has to be in range from 10 to 50!" });
+      validForm = false;
+  }
+  /* Equipment Validation */
+  if(Validation.validateClassroomEquipment(classroom.equipment) === false){
+      this.setState({oprema_error: "Please enter a valid equipment." });
+      validForm = false;
+  }
+  /* Number of keys Validation */
+  if(Validation.validateClassroomNumberOfKeys(classroom.number_of_keys) === false){
+      this.setState({broj_kljuceva_error: "Number of keys has to be in range from 1 to 3!" });
+      validForm = false;
+  }
+
+  if(validForm == false){
+    return;
+  }
   console.log(classroom);
   return apiHelper('/classroom/create', "POST", {
     classroom
@@ -41,7 +80,18 @@ kreirajSaluFunc(event){
   .then(responseJson => {
     console.log(responseJson);
     console.log("Uspjesno kreirano.");
-
+    this.setState({
+     naziv: '',
+     tip: '',
+     broj_mjesta: '',
+     oprema: '',
+     broj_kljuceva: '',
+     naziv_error: '',
+     tip_error: '',
+     broj_mjesta_error: '',
+     oprema_error: '',
+     broj_kljuceva_error: ''
+    })
   }).catch((error) => {
     console.log("Greska");
   })
@@ -59,26 +109,31 @@ render() {
        label='Naziv'
        value={naziv}
        onChangeText={ (naziv) => this.setState({ naziv }) }
+       error={this.state.naziv_error}
      />
      <TextField
         label='Tip'
         value={tip}
         onChangeText={ (tip) => this.setState({ tip }) }
+        error={this.state.tip_error}
       />
       <TextField
          label='Broj mjesta'
          value={broj_mjesta}
          onChangeText={ (broj_mjesta) => this.setState({ broj_mjesta }) }
+         error={this.state.broj_mjesta_error}
        />
        <TextField
           label='Oprema'
           value={oprema}
           onChangeText={ (oprema) => this.setState({ oprema }) }
+          error={this.state.oprema_error}
         />
         <TextField
            label='Broj kljuceva'
            value={broj_kljuceva}
            onChangeText={ (broj_kljuceva) => this.setState({ broj_kljuceva }) }
+           error={this.state.broj_kljuceva_error}
          />
           </View>
           <View style={{flex: 1}}>
