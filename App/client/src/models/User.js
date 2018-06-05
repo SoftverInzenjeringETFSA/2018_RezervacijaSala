@@ -26,4 +26,13 @@ export default class User {
     })
     .then(response => response.json())
   }
+  static logout(email){
+    return apiHelper('/auth/logout', "POST",{
+      user:{
+        username: email,
+        token: 'token'
+      }
+    })
+    .then(response => response.json())
+  }
 }

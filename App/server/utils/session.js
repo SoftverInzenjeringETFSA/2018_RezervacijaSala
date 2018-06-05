@@ -16,7 +16,7 @@ const Session = (() => {
      */
     const addUser = (user) => {
 
-        if (checkUser(user)) {
+        if (!checkUser(user)) {
             loggedUsers.push(user);
             return true;
         } else {
@@ -30,9 +30,11 @@ const Session = (() => {
      */
     const removeUser = (user) => {
         if(checkUser(user)) {
-            loggedUsers = loggedUsers.filter((u) => {
+            console.log("user found - logout");
+            const newarray = loggedUsers.filter((u) => {
                 return !_compareUsers(user,u);
             });
+            loggedUsers.splice(0, loggedUsers.length, ...newarray);
             return true;
         } else {
 
@@ -47,7 +49,6 @@ const Session = (() => {
      */
     const _compareUsers = (user1, user2) => {
         return user1.username === user2.username &&
-                user1.role === user2.role &&
                 user1.token === user2.token;
     }
 
@@ -58,7 +59,6 @@ const Session = (() => {
     const _findUser = (user) => {
         const found = loggedUsers.find((u) => {
             return u.username === user.username &&
-                    u.role === user.role &&
                     u.token === user.token;
         });
         return found;

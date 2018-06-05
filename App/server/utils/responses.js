@@ -22,6 +22,10 @@ const Responses = {
         responseCode: 409,
         message: 'User already exists.'
     },
+    USER_ALREADY_LOGGED_OUT:{
+      responseCode: 400,
+      message: 'User is already logged out.'
+    },
     INVALID_CREDENTIALS: {
         statusCode: 1,
         message: 'Invalid credentials'
@@ -57,6 +61,7 @@ const Responses = {
     },
     INVALID_PARAMETERS: {
         statusCode: 123,
+        responseCode: 400,
         message: 'Invalid parameters'
     },
     CLASSROOM_DELETED: {

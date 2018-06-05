@@ -75,9 +75,10 @@ export default class Registration extends Component {
     if(validForm == false)
       return;
 
-    User.registration(this.state.email, this.state.password).then((responseJson) =>{
+    User.registration(this.state.email.value, this.state.password.value).then((responseJson) =>{
       console.log(responseJson);
       if(responseJson.responseCode == 200){
+        setUsername(this.state.email.value);
         onSignIn(responseJson.token).then(() => { this.props.navigation.navigate("SignedIn") })
       }
     }).catch((error) => {

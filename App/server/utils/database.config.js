@@ -8,6 +8,8 @@ const MongoClient = require('mongodb').MongoClient;
             dbuser: tim9
             dbpassword: tim9-si-mongo
 */
+
+//const url = 'mongodb://siprojekat:DEONMRGfcRSdN8WHSSny1t8xrojnYAnz2CiTgcGk8Y3mHsNBIV58YwUAUxpzCTLEgkATW0eccPjakHuSHZOBOA%3D%3D@siprojekat.documents.azure.com:10255/?ssl=true';
 const url = 'mongodb://tim9:tim9-si-mongo@ds119060.mlab.com:19060/rezervacija-sale';
 const dbName = 'rezervacija-sale';
 
@@ -28,8 +30,6 @@ const dbName = 'rezervacija-sale';
     Obratiti pažnju na asinhronost tako da se cb() pozove nakon svih async funkcija.
 */
 
-
-
 /**
  * @param {any} handler Function (db, callback) => void. Calls callback at the end
  */
@@ -39,9 +39,8 @@ const MongoWrapper = (handler) => {
             console.log(err);
             return;
         }
-      
         const dbo = client.db(dbName);
-      
+
         handler(dbo, function() {
           client.close();
         });

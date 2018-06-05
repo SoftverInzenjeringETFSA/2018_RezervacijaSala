@@ -2,14 +2,23 @@
 import React from 'react'
 import { ScrollView, Text, View, StyleSheet } from 'react-native'
 import { Button } from 'react-native-elements'
+import { onSignOut, getUsername } from '../auth.js';
+import User from '../models/User.js';
 
 export default class Menu extends React.Component {
   constructor(props){
     super(props);
+    this.state = { username: null }
+    getUsername().then((response) => this.setState({ username: response }));
+    this.logout = this.logout.bind(this);
   }
-
   logout = () => {
-    
+    console.log(this.state.username);
+    User.logout(this.state.username).then((responseJson) =>{
+
+      console.log(responseJson);
+      onSignOut().then(() => this.props.navigation.navigate("SignedOut"))
+    })
   }
 
   render(){
@@ -68,7 +77,7 @@ export default class Menu extends React.Component {
 
             <Button
               title="Logout"
-              onPress={() => {}}
+              onPress={() => {this.logout()}}
               containerViewStyle={styles.LogoutBtn}
             />
         </View>

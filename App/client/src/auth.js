@@ -17,3 +17,23 @@ export const isSignedIn = () => {
         .catch(err => reject(err));
     });
   };
+
+
+/*  Saving username  */
+var username = null;
+export const getUsername = () => {
+  return new Promise((resolve, reject) => {
+    if(username != null){
+      resolve(username);
+    } else {
+
+    AsyncStorage.getItem("username")
+      .then(res => {
+        username = res;
+        resolve(username);
+      })
+      .catch(err => reject(err));
+    }
+  })
+}
+export const setUsername = (username) => AsyncStorage.setItem("username", username);

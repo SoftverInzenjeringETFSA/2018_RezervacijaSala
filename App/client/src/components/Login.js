@@ -2,7 +2,7 @@
 import React from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import { Card, Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
-import { onSignIn } from '../auth.js'
+import { onSignIn, setUsername } from '../auth.js'
 import User from '../models/User.js';
 import Validation from '../validation.js';
 
@@ -64,8 +64,10 @@ export default class Login extends React.Component{
 
     User.login(this.state.email.value, this.state.password.value).then((responseJson) => {
         console.log(responseJson);
-        if(responseJson.responseCode == 200)
+        if(responseJson.responseCode == 200){
+          setUsername(this.state.email.value);
           onSignIn(responseJson.token).then(() => this.props.navigation.navigate("SignedIn"));
+        }
       })
   }
 
