@@ -13,12 +13,16 @@ export default class Menu extends React.Component {
     this.logout = this.logout.bind(this);
   }
   logout = () => {
+<<<<<<< HEAD
     console.log(this.state.username);
     User.logout(this.state.username).then((responseJson) =>{
 
       console.log(responseJson);
       onSignOut().then(() => this.props.navigation.navigate("SignedOut"))
     })
+=======
+
+>>>>>>> b3da2174eb14d5d9f935276cbf947cfd2dc1f0b9
   }
 
   render(){
@@ -40,6 +44,12 @@ export default class Menu extends React.Component {
               <Button
                   title="Pretraga sala"
                   onPress={() => "dummyFunction"}
+                  containerViewStyle={styles.MenuItemStyle}
+                  backgroundColor="#03A9F4"
+              />
+              <Button
+                  title="Detalji sala"
+                  onPress={() => { this.props.navigation.navigate("ClassroomDetails")}}
                   containerViewStyle={styles.MenuItemStyle}
                   backgroundColor="#03A9F4"
               />

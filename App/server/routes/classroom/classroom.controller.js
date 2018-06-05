@@ -66,13 +66,44 @@ const ClassroomController = (() => {
         });
     }
     const POST_Create = (req, res) => {
-      console.log(req.classroom);
-      DBC.classroom.createClassroom(req.classroom);
+      console.log(req.body.classroom);
+      DBC.classroom.create(req.body.classroom);
+      res.json({test:"Test"})
+    }
+
+    const GET_GetClassroom = (req, res) => {
+      console.log(req.query)
+      DBC.classroom.findOneClassRoom(req.query.id)
+      .then((response) => {
+          consolle.log("Response");
+          console.log(response);
+        if(response == null)
+          res.json(Responses.NOT_FOUND);
+        else
+          res.json(response);
+      })
+      .catch((error) => {
+        console.log("error");
+        res.json(Responses.SERVER_ERROR)
+      });
+    }
+
+    const GET_GetAllClassrooms = (req, res) => {
+      console.log("GET_GetClassroom_1");
+      DBC.classroom.getAllClassrooms().then((response) => {
+        console.log("GET_GetClassroom_2");
+        if(response == null)
+            res.json(Responses.NOT_FOUND);
+        else
+            res.json(response);
+      });
     }
     return {
         POST_Delete: POST_Delete,
         POST_Search: POST_Search,
-        POST_Create: POST_Create
+        POST_Create: POST_Create,
+        GET_GetClassroom: GET_GetClassroom,
+        GET_GetAllClassrooms: GET_GetAllClassrooms
     }
 })();
 

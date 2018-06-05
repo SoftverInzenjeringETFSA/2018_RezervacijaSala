@@ -218,6 +218,21 @@ const DBC = (() => {
         })
     }
 
+    const getAllClassrooms = () => {
+        console.log("Funkcija getAllClassrooms");
+        return new Promise((resolve, reject) => {
+          MongoWrapper((dbo,callback) => {
+            dbo.collection('classroom').find().toArray(function(err, result) { //provjeriti ovu kolekciju, i provjeriti funkciju findAll()
+              if(err) throw err;
+              console.log("Greska u funkciji 'getAllClassrooms'" + result);
+              callback();
+              resolve(result);
+            });
+          });
+        });
+    }
+
+
     const createReservation = (reservation) => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
@@ -354,7 +369,7 @@ const DBC = (() => {
                       console.log(error);
                       reject();
                   };
-                  console.log('Inserted ' + classroom.naziv + ' classroom');
+                  console.log('Inserted ' + classroom.name + ' classroom');
                   callback();
                   resolve(response);
                 });
@@ -442,11 +457,12 @@ const DBC = (() => {
             getFromTo: getScheduleFromTo
         },
         classroom: {
-            findOne: findClassRoom,
+            findOneClassRoom: findClassRoom,
             deleteOne: deleteClassroom,
             deleteRelatedObjects: deleteRelatedObjects,
             findAllByCriteria: findAllByCriteria,
-            create: createClassroom
+            create: createClassroom,
+            findAll: getAllClassrooms
         },
         reservation: {
             findOne: findReservation,

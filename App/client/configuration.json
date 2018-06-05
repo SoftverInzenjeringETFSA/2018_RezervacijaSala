@@ -1,5 +1,13 @@
 {
   "server_protocol": "http",
-  "server_ip": "192.168.0.164",
+<<<<<<< HEAD
+  "server_ip": "192.168.0.13",
+=======
+<<<<<<< HEAD
+  "server_ip": "192.168.0.21",
+=======
+  "server_ip": "192.168.0.14",
+>>>>>>> 11963ba5c2fea6170dd1af9fecc97c97d443022f
+>>>>>>> 1f79d921f3fab29455dd09b6431a558ba465c5a4
   "server_port": 5000
 }
