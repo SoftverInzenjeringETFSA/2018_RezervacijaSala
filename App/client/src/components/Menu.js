@@ -9,7 +9,7 @@ export default class Menu extends React.Component {
   }
 
   logout = () => {
-    
+
   }
 
   render(){
@@ -31,6 +31,12 @@ export default class Menu extends React.Component {
               <Button
                   title="Pretraga sala"
                   onPress={() => "dummyFunction"}
+                  containerViewStyle={styles.MenuItemStyle}
+                  backgroundColor="#03A9F4"
+              />
+              <Button
+                  title="Detalji sala"
+                  onPress={() => { this.props.navigation.navigate("ClassroomDetails")}}
                   containerViewStyle={styles.MenuItemStyle}
                   backgroundColor="#03A9F4"
               />

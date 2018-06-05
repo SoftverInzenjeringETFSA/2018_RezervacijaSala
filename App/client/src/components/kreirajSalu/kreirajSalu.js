@@ -43,6 +43,8 @@ kreirajSaluFunc(event){
     equipment : oprema,
     number_of_keys : broj_kljuceva,
   };
+<<<<<<< HEAD
+=======
 
   /* Name Validation */
   if(Validation.validateClassroomName(classroom.name) === false){
@@ -73,6 +75,7 @@ kreirajSaluFunc(event){
   if(validForm == false){
     return;
   }
+>>>>>>> 11963ba5c2fea6170dd1af9fecc97c97d443022f
   console.log(classroom);
   return apiHelper('/classroom/create', "POST", {
     classroom
@@ -80,6 +83,9 @@ kreirajSaluFunc(event){
   .then(responseJson => {
     console.log(responseJson);
     console.log("Uspjesno kreirano.");
+<<<<<<< HEAD
+
+=======
     this.setState({
      naziv: '',
      tip: '',
@@ -92,6 +98,7 @@ kreirajSaluFunc(event){
      oprema_error: '',
      broj_kljuceva_error: ''
     })
+>>>>>>> 11963ba5c2fea6170dd1af9fecc97c97d443022f
   }).catch((error) => {
     console.log("Greska");
   })
