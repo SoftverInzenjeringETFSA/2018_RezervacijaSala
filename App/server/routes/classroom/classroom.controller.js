@@ -66,8 +66,9 @@ const ClassroomController = (() => {
         });
     }
     const POST_Create = (req, res) => {
-      console.log(req.classroom);
-      DBC.classroom.createClassroom(req.classroom);
+      console.log(req.body.classroom);
+      DBC.classroom.create(req.body.classroom);
+      res.json({test:"Test"})
     }
 
     const GET_GetClassroom = (req, res) => {

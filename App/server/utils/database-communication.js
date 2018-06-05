@@ -354,7 +354,7 @@ const DBC = (() => {
                       console.log(error);
                       reject();
                   };
-                  console.log('Inserted ' + classroom.naziv + ' classroom');
+                  console.log('Inserted ' + classroom.name + ' classroom');
                   callback();
                   resolve(response);
                 });

@@ -34,10 +34,59 @@ const Validation = (() => {
     return re.test(password) && re.test(repassword) && password === repassword;
   }
 
+  const validateClassroomName = (name) => {
+    if(!name)
+    return false;
+
+    var re = /^[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    return re.test(name);
+  }
+
+  const validateClassroomType = (type) => {
+    if(!type)
+    return false;
+    /*
+      Same regex as above for classroom name validation
+    */
+    var re = /^[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    return re.test(type);
+  }
+
+  const validateClassroomNumberOfSeats = (number_of_seats) => {
+    if(!number_of_seats)
+    return false;
+
+    var re = /^([1-4][0-9]|50)$/;
+    return re.test(number_of_seats);
+  }
+
+  const validateClassroomEquipment = (equipment) => {
+    if(!equipment)
+    return false;
+    /*
+      Same regex as above for classroom name validation
+    */
+    var re = /^[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    return re.test(equipment);
+  }
+
+  const validateClassroomNumberOfKeys = (number_of_keys) => {
+    if(!number_of_keys)
+    return false;
+
+    var re = /^[1-3]$/;
+    return re.test(number_of_keys);
+  }
+
   return {
     validateEmail,
     validatePassword,
-    validateRepassword
+    validateRepassword,
+    validateClassroomName,
+    validateClassroomType,
+    validateClassroomNumberOfSeats,
+    validateClassroomEquipment,
+    validateClassroomNumberOfKeys
   };
 })();
 
