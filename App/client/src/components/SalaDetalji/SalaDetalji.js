@@ -23,6 +23,7 @@ export default class SalaDetalji extends Component{
   }
   componentDidMount(){
     this.getClassroom();
+  }
   deleteClassroom(){
     return apiHelper('/classroom/delete' + '?id='+ id, 'GET', {})
       .then((response) => response.json())
