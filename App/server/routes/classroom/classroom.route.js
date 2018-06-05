@@ -6,5 +6,7 @@ ClassroomRouter.post('/delete', ClassroomController.POST_Delete);
 ClassroomRouter.post('/search', ClassroomController.POST_Search);
 ClassroomRouter.post('/create', ClassroomController.POST_Create);
 ClassroomRouter.get('/getClassroom', ClassroomController.GET_GetClassroom);
+ClassroomRouter.get('/getAllClassrooms', ClassroomController.GET_GetAllClassrooms);
+
 
 module.exports = ClassroomRouter;

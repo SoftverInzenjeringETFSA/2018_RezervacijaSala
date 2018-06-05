@@ -10,23 +10,15 @@ export const SignedOut = createStackNavigator({
   /*
     Dodati pregledSala da se pokrene nakon logovanja, u slucaju da je samo korisnik, a u slucaju da je admin ima drugi prikaz
   */
-    Registration: {
-        screen: pregledSala,
-        navigationOptions: {
-            title: "Rezervacija sala",
-            headerTintColor: 'lightgrey',
-            headerStyle:{
-              backgroundColor: '#043F86'
-            }
-        }
-    },
-    /*
+
+
     Registration: {
       screen: Registration,
       navigationOptions: {
           title: "Registration"
-      },
-    */
+      }
+    },
+
     Login: {
         screen: Login,
         navigationOptions: {

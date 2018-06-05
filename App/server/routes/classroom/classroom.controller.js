@@ -79,11 +79,23 @@ const ClassroomController = (() => {
           res.json(response);
       });
     }
+
+    const GET_GetAllClassrooms = (req, res) => {
+      console.log("GET_GetClassroom_1");
+      DBC.classroom.getAllClassrooms().then((response) => {
+        console.log("GET_GetClassroom_2");
+        if(response == null)
+            res.json(Responses.NOT_FOUND);
+        else
+            res.json(response);
+      });
+    }
     return {
         POST_Delete: POST_Delete,
         POST_Search: POST_Search,
         POST_Create: POST_Create,
-        GET_GetClassroom: GET_GetClassroom
+        GET_GetClassroom: GET_GetClassroom,
+        GET_GetAllClassrooms: GET_GetAllClassrooms
     }
 })();
 
