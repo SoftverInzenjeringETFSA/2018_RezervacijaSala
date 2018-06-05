@@ -14,7 +14,7 @@ export default class SalaDetalji extends Component{
       tip: '',
       brojMjesta: '',
       brojKljuceva: '',
-      oprema: [{key: 'Zikrija'}, {key: 'Hana'}, {key: 'Zikrija'}, {key: 'Hana'}],
+      oprema: [{key: 'Zikrija'}, {key: 'Hana'}, {key: 'Cogo'}, {key: 'Irfan'}],
       odgovorniNastavnik: '',
       pristupLaboratoriji: '',
       status: ''

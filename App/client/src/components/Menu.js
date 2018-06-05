@@ -13,16 +13,12 @@ export default class Menu extends React.Component {
     this.logout = this.logout.bind(this);
   }
   logout = () => {
-<<<<<<< HEAD
     console.log(this.state.username);
     User.logout(this.state.username).then((responseJson) =>{
 
       console.log(responseJson);
       onSignOut().then(() => this.props.navigation.navigate("SignedOut"))
     })
-=======
-
->>>>>>> b3da2174eb14d5d9f935276cbf947cfd2dc1f0b9
   }
 
   render(){
