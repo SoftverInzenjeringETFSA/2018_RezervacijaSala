@@ -14,7 +14,7 @@ export default class PregledSvihSala extends React.Component{
       super(props);
       this.state = {
         checked: false,
-        isLoading: false,
+        isLoading: true,
         data: [],
         naziv: '1-14'
       }
@@ -45,8 +45,8 @@ componentDidMount(){
 render() {
     if (this.state.isLoading) {
       return (
-        <View style={{flex: 1, paddingTop: 20}}>
-          <ActivityIndicator />
+        <View style={{flex: 1, justifyContent: 'center'}}>
+          <ActivityIndicator size="large" />
         </View>
       );
     }
