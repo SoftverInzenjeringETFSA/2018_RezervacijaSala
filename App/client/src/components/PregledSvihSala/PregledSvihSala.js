@@ -18,6 +18,7 @@ export default class PregledSvihSala extends React.Component{
         data: [],
         naziv: '1-14'
       }
+      this.getClassroomId = this.getClassroomId.bind(this);
     }
 
 getAllClassrooms(){
@@ -34,7 +35,7 @@ getAllClassrooms(){
 }
 
 getClassroomId(classroomId){
-  Alert.alert(classroomId);
+  this.props.navigation.navigate("ClassroomDetails", {id: classroomId});
 }
 /*
 * Dodati da se ispisuje kao lista
@@ -43,6 +44,12 @@ componentDidMount(){
   this.getAllClassrooms();
 }
 render() {
+   var reload = this.props.navigation.getParam("reload", false);
+   if(reload){
+     this.getAllClassrooms();
+      reload = false;
+   }
+
     if (this.state.isLoading) {
       return (
         <View style={{flex: 1, justifyContent: 'center'}}>

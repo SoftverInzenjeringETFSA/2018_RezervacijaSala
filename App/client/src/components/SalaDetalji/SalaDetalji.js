@@ -6,11 +6,12 @@ import apiHelper from '../../utils/apiHelper.js';
 export default class SalaDetalji extends Component{
   constructor(props) {
     super(props)
-
+    const id = this.props.navigation.getParam('id', 'NO-ID');
+    console.log(id);
     this.state = {
+      id: id,
       checked: false,
-      data: [{key: 'Zikrija'}, {key: 'Hana'}, {key: 'Zikrija'}, {key: 'Hana'}, {key: 'Zikrija'}, {key: 'Hana'}, {key: 'Zikrija'}, {key: 'Hana'}],
-      naziv: '1-14',
+      data: [{key: 'Zikrija'}, {key: 'Hana'}],
       tip: '',
       brojMjesta: '',
       brojKljuceva: '',
@@ -20,15 +21,21 @@ export default class SalaDetalji extends Component{
       status: ''
     }
     this.getClassroom = this.getClassroom.bind(this);
+    this.deleteClassroom = this.deleteClassroom.bind(this);
   }
   componentDidMount(){
     this.getClassroom();
   }
   deleteClassroom(){
-    return apiHelper('/classroom/delete' + '?id='+ id, 'GET', {})
+    return apiHelper('/classroom/delete', 'POST', {
+      classroom: {
+        id: this.state.id
+      }
+    })
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
+        this.props.navigation.navigate("ClassroomOverview",{ reload: true });
       })
       .catch((error) =>{
         console.error(error);
@@ -36,20 +43,18 @@ export default class SalaDetalji extends Component{
   }
 
   getClassroom(){
-    var id = "5b1564a621e05807e45e5923";
-    return apiHelper('/classroom/getClassroom' + '?id='+ id , 'GET', {})
+    return apiHelper('/classroom/getClassroom' + '?id='+ this.state.id , 'GET', {})
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson);
         this.setState({
           naziv: responseJson.name,
           tip: responseJson.type,
           brojMjesta: responseJson.number_of_seats,
           brojKljuceva: responseJson.number_of_keys,
           oprema: responseJson.equipment,
-          odgovorniNastavnik: responseJson.odgovorniNastavnik,
-          pristupLaboratoriji: responseJson.pristupLaboratoriji,
-          status: responseJson.status
-        }, function(){});
+          status: false
+        });
       })
       .catch((error) =>{
         console.error(error);

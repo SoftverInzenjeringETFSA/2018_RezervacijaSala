@@ -257,6 +257,7 @@ const DBC = (() => {
                     if (err) {
                         console.log(err);
                         reject();
+                        return;
                     };
 
                     console.log('Schedule updated');
@@ -268,16 +269,15 @@ const DBC = (() => {
     }
 
     const findClassRoom = (id) => {
+      console.log(id);
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
-                dbo.collection('classroom').findOne({_id: new ObjectId(id)}, (err, res) => {
-                    if (err) {
-                        console.log(err);
-                        reject();
-                    };
+                dbo.collection('classroom').findOne({_id: new ObjectId(id)},{}, (err, res) => {
+                  console.log(res);
+                    if (err) throw err;
                     callback();
                     resolve(res);
-                    });
+                  });
             });
         });
     }
@@ -349,10 +349,7 @@ const DBC = (() => {
         return new Promise((resolve, reject) => {
             MongoWrapper((dbo, callback) => {
                 dbo.collection('classroom').deleteOne({ _id: new ObjectId(id)}, (err, res) => {
-                    if(err) {
-                        console.log(err);
-                        reject();
-                    }
+                    if(err) throw err;
                     deleteRelatedObjects(id);
                     callback();
                     resolve(res);

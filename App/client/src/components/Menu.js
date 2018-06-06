@@ -44,12 +44,6 @@ export default class Menu extends React.Component {
                   backgroundColor="#03A9F4"
               />
               <Button
-                  title="Detalji sala"
-                  onPress={() => { this.props.navigation.navigate("ClassroomDetails")}}
-                  containerViewStyle={styles.MenuItemStyle}
-                  backgroundColor="#03A9F4"
-              />
-              <Button
                   title="Pregled rezervisanih sala"
                   onPress={() => "dummyFunction"}
                   containerViewStyle={styles.MenuItemStyle}

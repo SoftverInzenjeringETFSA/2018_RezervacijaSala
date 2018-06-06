@@ -75,18 +75,15 @@ const ClassroomController = (() => {
       console.log(req.query)
       DBC.classroom.findOneClassRoom(req.query.id)
       .then((response) => {
-          consolle.log("Response");
+          console.log("Response");
           console.log(response);
         if(response == null)
           res.json(Responses.NOT_FOUND);
         else
           res.json(response);
       })
-      .catch((error) => {
-        console.log("error");
-        res.json(Responses.SERVER_ERROR)
-      });
-    }
+
+    };
 
     const GET_GetAllClassrooms = (req, res) => {
       console.log("GET_GetClassroom called");

@@ -38,7 +38,7 @@ const Validation = (() => {
     if(!name)
     return false;
 
-    var re = /^[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    var re = /^([a-zA-Z][^#&<>\"~;$^%{}?]){1,20}$/;
     return re.test(name);
   }
 
@@ -48,7 +48,7 @@ const Validation = (() => {
     /*
       Same regex as above for classroom name validation
     */
-    var re = /^[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    var re = /^([a-zA-Z][^#&<>\"~;$^%{}?]){1,20}$/;
     return re.test(type);
   }
 
@@ -56,7 +56,7 @@ const Validation = (() => {
     if(!number_of_seats)
     return false;
 
-    var re = /^([1-4][0-9]|50)$/;
+    var re = /^(([1-4][0-9])|50)$/;
     return re.test(number_of_seats);
   }
 
@@ -66,7 +66,7 @@ const Validation = (() => {
     /*
       Same regex as above for classroom name validation
     */
-    var re = /^[A-Z][a-zA-Z][^#&<>\"~;$^%{}?]{1,20}$/;
+    var re = /^([a-zA-Z][^#&<>\"~;$^%{}?]){1,20}$/;
     return re.test(equipment);
   }
 
