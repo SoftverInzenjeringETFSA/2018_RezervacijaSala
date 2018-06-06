@@ -3,7 +3,7 @@ import Login from './components/Login'
 import Registration from './components/Registration'
 import Menu from './components/Menu'
 import Profile from './components/Profile'
-import kreirajSalu from './components/kreirajSalu/kreirajSalu.js'
+import KreirajSalu from './components/KreirajSalu/KreirajSalu.js'
 import pregledSala from './components/PregledSvihSala/PregledSvihSala.js'
 import SalaDetalji from './components/SalaDetalji/SalaDetalji.js'
 
@@ -35,7 +35,7 @@ export const SignedIn = createStackNavigator({
       }
     },
     ClassroomCreation:{
-      screen: kreirajSalu,
+      screen: KreirajSalu,
       navigationOptions:{
         title: "Create classroom"
       }

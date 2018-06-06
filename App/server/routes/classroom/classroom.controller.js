@@ -89,9 +89,9 @@ const ClassroomController = (() => {
     }
 
     const GET_GetAllClassrooms = (req, res) => {
-      console.log("GET_GetClassroom_1");
-      DBC.classroom.getAllClassrooms().then((response) => {
-        console.log("GET_GetClassroom_2");
+      console.log("GET_GetClassroom called");
+      DBC.classroom.getAll().then((response) => {
+        console.log("GET_GetClassroom, ", response);
         if(response == null)
             res.json(Responses.NOT_FOUND);
         else

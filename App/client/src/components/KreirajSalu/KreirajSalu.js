@@ -7,7 +7,7 @@ import styles from './style.js';
 import apiHelper from '../../utils/apiHelper.js';
 import Validation from '../../validation.js';
 
-export default class kreirajSalu extends Component {
+export default class KreirajSalu extends Component {
 
 constructor(props) {
   super(props);

@@ -1,35 +1,14 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
-
-
 export default styles = StyleSheet.create({
-  title: {
-    color: 'black',
-    fontWeight: 'bold',
-    fontSize: 30,
+  sectionListContainer:{
+    margin: 15,
+    marginTop: 5,
+    padding: 10
   },
-  header:{
-    color: 'gray',
-    fontSize: 30,
-    marginLeft: 12
-  },
-  paragraph: {
-        margin: 15,
-        fontSize: 19,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-  MainContainer :{
-          // Setting up View inside content in Vertically center.
-          justifyContent: 'center',
-          flex:1,
-          margin: 10
-          },
-
- rowViewContainer: {
-          fontSize: 20,
-          paddingRight: 10,
-          paddingTop: 10,
-          paddingBottom: 10,
-      }
+  noItems:{
+    margin: 10,
+    fontStyle: 'italic',
+    textAlign: 'center'
+  }
 });

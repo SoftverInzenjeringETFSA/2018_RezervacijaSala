@@ -462,7 +462,7 @@ const DBC = (() => {
             deleteRelatedObjects: deleteRelatedObjects,
             findAllByCriteria: findAllByCriteria,
             create: createClassroom,
-            findAll: getAllClassrooms
+            getAll: getAllClassrooms
         },
         reservation: {
             findOne: findReservation,
