@@ -79,7 +79,7 @@ export default class SalaDetalji extends Component{
         <View style={styles.lista}>
           <Text style={{fontSize: 20, paddingTop: 5, paddingLeft: 10, color: '#03A9F4'}}>Dozvoljen pristup laboratoriji: </Text>
           <FlatList
-            data={this.state.data}
+            data={this.state.pristupLaboratoriji}
             renderItem={({item}) => <Text style={{paddingLeft: 20, marginTop: 3, fontSize: 18, color: '#03A9F4'}}>{item.key}</Text>}
           />
         </View>

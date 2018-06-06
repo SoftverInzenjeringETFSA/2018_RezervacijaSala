@@ -72,11 +72,8 @@ const ClassroomController = (() => {
     }
 
     const GET_GetClassroom = (req, res) => {
-      console.log(req.query)
       DBC.classroom.findOneClassRoom(req.query.id)
       .then((response) => {
-          console.log("Response");
-          console.log(response);
         if(response == null)
           res.json(Responses.NOT_FOUND);
         else
