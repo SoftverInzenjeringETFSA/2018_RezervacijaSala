@@ -9,15 +9,14 @@ export default class SalaDetalji extends Component{
 
     this.state = {
       checked: false,
-      data: [{key: 'Zikrija'}, {key: 'Hana'}, {key: 'Zikrija'}, {key: 'Hana'}, {key: 'Zikrija'}, {key: 'Hana'}, {key: 'Zikrija'}, {key: 'Hana'}],
-      naziv: '1-14',
-      tip: '',
-      brojMjesta: '',
-      brojKljuceva: '',
-      oprema: [{key: 'Zikrija'}, {key: 'Hana'}, {key: 'Cogo'}, {key: 'Irfan'}],
-      odgovorniNastavnik: '',
-      pristupLaboratoriji: '',
-      status: ''
+      naziv: 'Lab 1-14',
+      tip: 'Mala',
+      brojMjesta: '12',
+      brojKljuceva: '2',
+      oprema: [{key: 'Kompjuter'}, {key: 'Projektor'}, {key: 'Prozor'}, {key: 'Ruter'}],
+      odgovorniNastavnik: 'Edin Dzeko',
+      pristupLaboratoriji: [{key: 'Zikrija'}, {key: 'Hana'}, {key: 'Cogo'}, {key: 'Irfan'}],
+      status: 'Funkcionalna'
     }
     this.getClassroom = this.getClassroom.bind(this);
   }
@@ -25,6 +24,7 @@ export default class SalaDetalji extends Component{
     this.getClassroom();
   }
   deleteClassroom(){
+    var id = "5b17271e66bf63b8665c766a";
     return apiHelper('/classroom/delete' + '?id='+ id, 'GET', {})
       .then((response) => response.json())
       .then((responseJson) => {
@@ -36,7 +36,7 @@ export default class SalaDetalji extends Component{
   }
 
   getClassroom(){
-    var id = "5b1564a621e05807e45e5923";
+    var id = "5b17271e66bf63b8665c766a";
     return apiHelper('/classroom/getClassroom' + '?id='+ id , 'GET', {})
       .then((response) => response.json())
       .then((responseJson) => {
@@ -74,7 +74,7 @@ export default class SalaDetalji extends Component{
         <View style={styles.lista}>
           <Text style={{fontSize: 20, paddingTop: 5, paddingLeft: 10, color: '#03A9F4'}}>Dozvoljen pristup laboratoriji: </Text>
           <FlatList
-            data={this.state.data}
+            data={this.state.pristupLaboratoriji}
             renderItem={({item}) => <Text style={{paddingLeft: 20, marginTop: 3, fontSize: 18, color: '#03A9F4'}}>{item.key}</Text>}
           />
         </View>
